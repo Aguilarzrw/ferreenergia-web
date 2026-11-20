@@ -300,3 +300,8 @@ input[type='search']::-webkit-search-cancel-button { display: none; }
 .cursor-glow { z-index: 1; }
 @media (min-width: 860px) and (max-width: 1139px) { #featured { grid-template-columns: repeat(2, 1fr); } }
 .dds { align-items: flex-start; } .dd { align-content: start; }
+
+/* barra de confianza: 2 cifras + marcas */
+.brand__sub { font: 500 .6875rem var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.stat span { max-width: 26ch; text-transform: none; letter-spacing: 0; font-size: var(--fs-sm); font-weight: 600; }
+@media (min-width: 900px) { .trust__grid { grid-template-columns: 1fr 1.3fr 1.6fr; } .brand { padding-left: var(--s6); } }

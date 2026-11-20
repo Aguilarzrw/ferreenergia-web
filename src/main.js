@@ -123,8 +123,8 @@ if ($('#work-rail')) {
 // ---- Sedes: tarjetas + mapa + FAQ ----
 if ($('#sede-list')) {
   const info = {
-    'San Jacinto': { est: 'Aragua', main: true, txt: 'Sede principal. Exhibición de plantas, despacho de equipos y taller de servicio técnico.', hora: 'Lun a Sáb · 8:00 a. m. – 5:00 p. m. (por confirmar)' },
-    'Camaguán': { est: 'Guárico', nuevo: true, txt: 'Nueva sede para los llanos: más cerca de fincas, galpones y comercios del Guárico.', hora: 'Lun a Sáb · 8:00 a. m. – 5:00 p. m. (por confirmar)' },
+    'San Jacinto': { est: 'Aragua', main: true, txt: 'Sede principal. Exhibición de plantas, despacho de equipos y taller de servicio técnico.', hora: 'Consúltalo por WhatsApp' },
+    'Camaguán': { est: 'Guárico', nuevo: true, txt: 'Nueva sede para los llanos: más cerca de fincas, galpones y comercios del Guárico.', hora: 'Consúltalo por WhatsApp' },
   };
   $('#sede-list').innerHTML = Object.entries(info).map(([n, d]) => `
     <article class="sede ${d.main ? 'is-main' : ''}">
@@ -147,8 +147,8 @@ if ($('#sede-list')) {
 }
 if ($('#acc')) {
   const faq = [
-    ['¿Qué garantía tienen las plantas?', 'Las plantas nuevas incluyen garantía de fábrica y respaldo de nuestro servicio técnico. El tiempo exacto depende del modelo y te lo confirmamos por escrito al cotizar.'],
-    ['¿Cuáles son las formas de pago?', 'Aceptamos dólares en efectivo, transferencia y pago móvil. Escríbenos por WhatsApp y te indicamos las opciones vigentes.'],
+    ['¿Qué garantía tienen las plantas?', 'Cada equipo tiene el respaldo de nuestro servicio técnico. El tiempo de garantía depende del modelo y te lo confirmamos por escrito al cotizar.'],
+    ['¿Cuáles son las formas de pago?', 'Los precios están en dólares. Escríbenos por WhatsApp y te indicamos las formas de pago disponibles.'],
     ['¿Hacen envíos a otros estados?', 'Sí. Despachamos desde San Jacinto y Camaguán a Aragua, los llanos y otras zonas del país. El costo depende del destino y del peso del equipo.'],
     ['¿Instalan la planta?', 'Sí. Nuestro equipo técnico instala el equipo, conecta el ATS si aplica y hace pruebas de carga antes de entregarte todo funcionando.'],
     ['¿Tienen repuestos y mantenimiento?', 'Manejamos repuestos y mantenimiento preventivo para las marcas que distribuimos. Escríbenos con el modelo de tu equipo y te decimos qué hay disponible.'],
