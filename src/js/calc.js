@@ -19,7 +19,9 @@ export function calcular(sel) {
 }
 
 export function recomendar(kva) {
-  const plantas = catalogo.productos.filter((p) => p.categoria === 'plantas' && p.kva).sort((a, b) => a.kva - b.kva);
+  const plantas = catalogo.productos.filter((p) => p.categoria === 'plantas' && p.kva)
+    .flatMap((p) => (p.variantes ? p.variantes.map((v) => ({ ...p, nombre: `${p.marca} ${v.kva} KVA`, kva: v.kva, precio: v.precio, variantes: null, desde: false })) : [p]))
+    .sort((a, b) => a.kva - b.kva);
   const ok = plantas.find((p) => p.kva >= kva);
   return { producto: ok || plantas[plantas.length - 1], cubre: !!ok };
 }

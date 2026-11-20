@@ -7,7 +7,9 @@ const FUEL = { diesel: 'Diésel', gasolina: 'Gasolina' };
 const f = { cat: 'todas', fuel: 'todos', kva: 'todas', q: '' };
 const LIMIT = Infinity;
 let showAll = false;
-const pTxt = (p) => (p.precio == null ? 'Consultar' : precio(p.precio));
+const pTxt = (p) => (p.precio == null ? 'Consultar' : (p.desde ? 'Desde ' : '') + precio(p.precio));
+const kvaLabel = (p) => (p.kvaMax ? `${p.kva}–${p.kvaMax} KVA` : kvaTxt(p.kva) + ' KVA');
+const kvasDe = (p) => (p.variantes ? p.variantes.map((v) => v.kva) : [p.kva]);
 let compare = [];
 
 const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -26,7 +28,7 @@ function filtrar() {
     if (f.fuel !== 'todos' && p.combustible !== f.fuel) return false;
     if (f.kva !== 'todas') {
       const [a, b] = f.kva.split('-').map(Number);
-      if (p.kva == null || p.kva < a || p.kva >= b) return false;
+      if (p.kva == null || !kvasDe(p).some((k) => k >= a && k < b)) return false;
     }
     if (f.q) {
       const hay = norm([p.nombre, p.marca, p.combustible || '', p.kva ? p.kva + ' kva' : '', p.categoria, p.badges.join(' ')].join(' '));
@@ -38,17 +40,17 @@ function filtrar() {
 
 function card(p, opts = {}) {
   const checked = compare.includes(p.id);
-  const canCmp = p.categoria === 'plantas' && !opts.noCmp;
+  const canCmp = p.categoria === 'plantas' && !opts.noCmp && !p.variantes;
   return `<article class="card" data-id="${p.id}">
     <div class="card__img">${visual(p)}
-      ${p.kva ? `<span class="card__kva">${kvaTxt(p.kva)} KVA</span>` : ''}
+      ${p.kva ? `<span class="card__kva">${kvaLabel(p)}</span>` : ''}
       ${p.combustible ? `<span class="card__fuel">${FUEL[p.combustible]}</span>` : ''}
     </div>
     <div class="card__body">
       <h3 class="card__name"><button type="button" data-open="${p.id}" aria-haspopup="dialog">${nombreLimpio(p)}</button></h3>
       <div class="badges">${p.badges.map((b) => `<span class="badge ${b === 'ATS' ? 'badge--ats' : ''}">${b}</span>`).join('')}</div>
       <div class="card__foot">
-        <div class="price ${p.precio == null ? 'price--ask' : ''}">${pTxt(p)}<small>${p.precio == null ? 'Precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · referencial' : '')}</small></div>
+        <div class="price ${p.precio == null ? 'price--ask' : ''}">${pTxt(p)}<small>${p.precio == null ? 'Precio por WhatsApp' : (p.variantes ? 'USD · según potencia' : 'USD' + (p.ejemplo ? ' · referencial' : ''))}</small></div>
         ${canCmp ? `<label class="cmp"><input class="cmp__in" type="checkbox" data-cmp="${p.id}" ${checked ? 'checked' : ''} /><span class="cmp__box" aria-hidden="true">${icon('check', 14)}</span><span>Comparar</span></label>` : ''}
       </div>
     </div></article>`;
@@ -87,25 +89,26 @@ function openProduct(id, trigger) {
     $('.pd__main', dlg).innerHTML = visual(p, idx);
     dlg.querySelectorAll('.pd__thumbs button').forEach((b, i) => b.setAttribute('aria-current', i === idx));
   };
-  const chips = [p.kva ? kvaTxt(p.kva) + ' KVA' : '', p.combustible ? FUEL[p.combustible] : '', ...p.badges].filter(Boolean);
+  const chips = [p.kva ? kvaLabel(p) : '', p.combustible ? FUEL[p.combustible] : '', ...p.badges].filter(Boolean);
   dlg.innerHTML = `
     <div class="dlg__head"><h3 id="pd-title">${nombreLimpio(p)}</h3><button class="dlg__close" type="button" aria-label="Cerrar ficha">${icon('close', 20)}</button></div>
     <div class="dlg__body">
       <div class="pd">
         <div class="pd__gal"><div class="pd__main"></div>
           ${n > 1 ? `<div class="pd__thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" aria-label="Ver foto ${i + 1}">${visual(p, i)}</button>`).join('')}</div>` : ''}
-          ${!(p.imagenes || []).length ? '<p class="note-ref">Imagen ilustrativa. Foto real próximamente.</p>' : ''}
+          ${!(p.imagenes || []).length ? '<p class="note-ref">Imagen ilustrativa. Foto real próximamente.</p>' : p.fotoReferencial ? '<p class="note-ref">Foto referencial de la serie.</p>' : ''}
         </div>
         <div class="pd__info">
           <div class="badges">${chips.map((c, i) => `<span class="badge ${i === 0 && p.kva ? 'badge--ats' : ''}">${c}</span>`).join('')}</div>
           <p>${p.descripcion}</p>
           <table class="spec"><caption class="sr">Especificaciones técnicas</caption><tbody>${Object.entries(p.specs).map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join('')}</tbody></table>
+          ${p.variantes ? `<table class="spec spec--var"><caption class="sr">Potencias y precios</caption><tbody>${p.variantes.map((v) => `<tr><th scope="row">${v.kva} KVA</th><td><b>${precio(v.precio)}</b></td><td><a class="var-wa" target="_blank" rel="noopener" href="${waLink(`Hola Ferreenergía, me interesa la AGG de ${v.kva} KVA (${precio(v.precio)}). ¿Está disponible?`)}">Pedir ${icon('arrow', 14)}</a></td></tr>`).join('')}</tbody></table>` : ''}
           <p class="avail"><span class="avail__l">Disponible en</span>${p.disponible.map((s) => `<span class="avail__p">${icon('pin', 14)}${s}</span>`).join('')}</p>
         </div>
       </div>
     </div>
     <div class="dlg__foot">
-      <div class="pd__price">${pTxt(p)}<small>${p.precio == null ? 'precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · referencial' : '')}</small></div>
+      <div class="pd__price">${pTxt(p)}<small>${p.precio == null ? 'precio por WhatsApp' : 'USD' + (p.variantes ? ' · según potencia' : p.ejemplo ? ' · referencial' : '')}</small></div>
       <a class="btn btn--yellow" target="_blank" rel="noopener" href="${waLink(msgProducto(p), WA.principal)}">${icon('wa', 20)} Pedir por WhatsApp</a>
     </div>`;
   dlg.querySelector('.dlg__close').onclick = () => dlg.close();
@@ -179,7 +182,7 @@ function initDropdowns(onChange) {
   return { reset() { dds.forEach((d) => mark(d, d.querySelector('[role=option]'))); } };
 }
 
-const DESTACADOS = ['europower-dg15000se', 'europower-em3800', 'generador-dual-12000w', 'agg-66'];
+const DESTACADOS = ['europower-dg15000se', 'europower-em3800', 'generador-dual-12000w', 'agg-serie'];
 export function initFeatured() {
   const g = $('#featured'); if (!g) return;
   g.innerHTML = DESTACADOS.map((id) => card(data.productos.find((p) => p.id === id), { noCmp: true })).join('');
