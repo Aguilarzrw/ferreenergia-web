@@ -274,3 +274,119 @@ body[data-page="catalogo"] .strip p { color: rgba(255,255,255,.78); }
   body[data-page="catalogo"] .card,
   #featured .card { transition: none; }
 }
+
+
+/* Shared hybrid language for the secondary pages and home teasers */
+body[data-page="servicios"],
+body[data-page="sedes"] {
+  background: var(--fe-paper);
+  color: var(--fe-ink);
+}
+body[data-page="servicios"] .nav,
+body[data-page="sedes"] .nav { background: rgba(10,10,10,.94); }
+body[data-page="servicios"] .phead,
+body[data-page="sedes"] .phead,
+body[data-page="calculadora"] .phead {
+  padding: clamp(112px, 13vw, 164px) 0 clamp(48px, 7vw, 82px);
+  background: #111416;
+  color: #f7f6f1;
+}
+body[data-page="servicios"] .phead .crumbs,
+body[data-page="sedes"] .phead .crumbs,
+body[data-page="calculadora"] .phead .crumbs { color: rgba(255,255,255,.5); }
+body[data-page="servicios"] .phead .crumbs a,
+body[data-page="sedes"] .phead .crumbs a,
+body[data-page="calculadora"] .phead .crumbs a { color: rgba(255,255,255,.72); }
+body[data-page="servicios"] .phead h1,
+body[data-page="sedes"] .phead h1,
+body[data-page="calculadora"] .phead h1 {
+  max-width: 880px;
+  margin-top: 28px;
+  font-size: clamp(3rem, 7vw, 6.4rem);
+  line-height: .9;
+  letter-spacing: -.025em;
+}
+body[data-page="servicios"] .phead .lead,
+body[data-page="sedes"] .phead .lead,
+body[data-page="calculadora"] .phead .lead {
+  max-width: 560px;
+  margin-top: 22px;
+  color: rgba(255,255,255,.66);
+  line-height: 1.65;
+}
+body[data-page="servicios"] .svc {
+  background: var(--fe-white);
+  color: var(--fe-ink);
+  border: 1px solid var(--fe-line);
+  border-radius: 3px;
+  box-shadow: none;
+}
+body[data-page="servicios"] .svc::before { background: var(--y); }
+body[data-page="servicios"] .svc h2,
+body[data-page="servicios"] .svc h3 {
+  color: var(--fe-ink);
+  font: 650 1.18rem/1.2 var(--f-body);
+  text-transform: none;
+}
+body[data-page="servicios"] .svc p { color: #696e70; }
+body[data-page="servicios"] .sec--alt {
+  background: #15191b;
+  color: #f5f4ef;
+}
+body[data-page="servicios"] .sec--alt .tl li span { color: rgba(255,255,255,.62); }
+body[data-page="servicios"] .tl li b {
+  font: 650 1.08rem/1.2 var(--f-body);
+  text-transform: none;
+}
+body[data-page="sedes"] .sede {
+  background: var(--fe-white);
+  color: var(--fe-ink);
+  border: 1px solid var(--fe-line);
+  border-radius: 3px;
+}
+body[data-page="sedes"] .sede.is-main { border-color: rgba(154,122,0,.5); }
+body[data-page="sedes"] .sede h3 {
+  color: var(--fe-ink);
+  font: 650 1.22rem/1.2 var(--f-body);
+  text-transform: none;
+}
+body[data-page="sedes"] .sede p,
+body[data-page="sedes"] .sede dd { color: #666b6d; }
+body[data-page="sedes"] .sede dt { color: #8a6d00; }
+body[data-page="sedes"] .map svg {
+  background: #e8e7e0;
+  border-color: var(--fe-line);
+}
+body[data-page="sedes"] .map svg text { fill: #222; }
+body[data-page="sedes"] .map figcaption { color: #74797a; }
+body[data-page="sedes"] .faq {
+  background: #15191b;
+  color: #f5f4ef;
+}
+body[data-page="sedes"] .acc__item {
+  background: #1d2224;
+  border-color: rgba(255,255,255,.12);
+}
+body[data-page="sedes"] .acc__q { font: 650 1rem/1.3 var(--f-body); text-transform: none; }
+body[data-page="sedes"] .acc__a p { color: rgba(255,255,255,.66); }
+body[data-page="inicio"] .tiles .tile {
+  background: #181c1e;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 3px;
+  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+body[data-page="inicio"] .tiles .tile:hover {
+  background: #202527;
+  border-color: rgba(255,200,0,.48);
+  transform: translateY(-3px);
+}
+body[data-page="inicio"] .tiles .tile h3 {
+  font: 650 1.1rem/1.2 var(--f-body);
+  text-transform: none;
+}
+body[data-page="inicio"] .tiles .tile p { color: rgba(255,255,255,.62); }
+@media (max-width: 639px) {
+  body[data-page="servicios"] .phead h1,
+  body[data-page="sedes"] .phead h1,
+  body[data-page="calculadora"] .phead h1 { font-size: clamp(2.8rem, 13vw, 4.3rem); }
+}
