@@ -5,7 +5,7 @@ import './styles/main.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { icon, siluetaSVG } from './js/visuals.js';
+import { icon } from './js/visuals.js';
 import { waLink, SEDES, prefersReduced } from './js/config.js';
 import { mountLayout } from './js/layout.js';
 
@@ -176,7 +176,7 @@ if ($('#acc')) {
 // ---- HERO (solo inicio): 3D diferido con fallback estático ----
 function hero() {
   const heroEl = $('#inicio'), canvas = $('#hero-canvas'), loader = $('#loader'), copy = $('#hero-copy'), hint = $('#hero-hint');
-  const fb = $('#hero-fallback'); fb.innerHTML = siluetaSVG('plantas', { insono: true });
+  const fb = $('#hero-fallback'); fb.innerHTML = `<img src="${import.meta.env.BASE_URL}img/productos/europower-dg15000se-1.webp" width="720" height="555" alt="Planta eléctrica Europower DG15000SE, diésel insonorizada con ATS" decoding="async" />`;
   const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
   const weak = navigator.hardwareConcurrency <= 4 || (navigator.deviceMemory && navigator.deviceMemory <= 4) || !hasGL || reduced;
   const stat = () => { heroEl.classList.add('is-static'); loader.classList.add('is-done'); };
