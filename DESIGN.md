@@ -1,6 +1,6 @@
 ---
 name: Ferreenergía VE
-description: Premium-industrial sobre base negra, con amarillo de marca como energía y el rojo solo para el rayo y alertas.
+description: Sistema híbrido industrial-editorial: superficies oscuras cinematográficas, catálogo claro y fotográfico, amarillo como acento de energía y rojo solo para el rayo/alertas.
 colors:
   energy-yellow: "#FFC800"
   energy-yellow-hover: "#FFD84A"
@@ -126,3 +126,15 @@ Radios 6/10/14 px (controles 10, tarjetas 14). Sin píldoras completas en botone
 - Do: respetar `prefers-reduced-motion` y mostrar siempre la versión estática del 3D en equipos débiles.
 - Don't: inventar cifras, testimonios o precios; las cifras de la barra de confianza son provisionales.
 - Don't: usar el rojo como color de acción, ni controles nativos del navegador, ni degradados morados.
+
+
+## Hybrid redesign direction
+
+La dirección vigente combina dos registros: impacto industrial para marca, navegación y momentos de alto contraste; claridad editorial para catálogo, fichas y contenido comercial. El Hero 3D de la portada es una pieza distintiva y se conserva sin reconstrucción.
+
+- **Oscuro:** cabeceras interiores, navegación, procesos y secciones de narrativa/impacto.
+- **Claro:** catálogo, fichas de producto y bloques de información que requieren lectura y comparación.
+- **Producto:** fotografía real con encuadre consistente; títulos compactos; datos técnicos breves y jerarquizados; menos etiquetas decorativas.
+- **Interacción:** filtros discretos, comparador y consulta comercial siguen siendo funcionales; movimiento sobrio y accesible.
+- **Credibilidad:** los productos marcados como ejemplo/demo no se publican como inventario confirmado.
+- **No hacer:** volver a un hero genérico, agrandar titulares de tarjetas, multiplicar iconos o inventar datos, imágenes de producto, stock o testimonios.
