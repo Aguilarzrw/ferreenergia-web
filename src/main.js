@@ -2,7 +2,6 @@ import '@fontsource-variable/big-shoulders-display';
 import '@fontsource-variable/archivo';
 import '@fontsource-variable/jetbrains-mono';
 import './styles/main.css';
-import './styles/system.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
