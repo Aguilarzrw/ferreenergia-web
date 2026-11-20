@@ -7,6 +7,7 @@ const FUEL = { diesel: 'Diésel', gasolina: 'Gasolina' };
 const f = { cat: 'todas', fuel: 'todos', kva: 'todas', q: '' };
 const LIMIT = Infinity;
 let showAll = false;
+let animNext = false; // el escalonado solo corre al cambiar filtros, no al teclear en la búsqueda
 const pTxt = (p) => (p.precio == null ? 'Consultar' : (p.desde ? 'Desde ' : '') + precio(p.precio));
 const kvaLabel = (p) => (p.kvaMax ? `${p.kva}–${p.kvaMax} KVA` : kvaTxt(p.kva) + ' KVA');
 const kvasDe = (p) => (p.variantes ? p.variantes.map((v) => v.kva) : [p.kva]);
@@ -60,7 +61,8 @@ function render() {
   const list = filtrar();
   const active = f.cat !== 'todas' || f.fuel !== 'todos' || f.kva !== 'todas' || f.q;
   const shown = active || showAll ? list : list.slice(0, LIMIT);
-  $('#grid').innerHTML = list.length ? shown.map(card).join('') : '<p class="empty">No hay equipos con esos filtros. Quita alguno o escríbenos por WhatsApp.</p>';
+  $('#grid').innerHTML = list.length ? shown.map((p, i) => card(p).replace('<article class="card"', `<article class="card" style="--i:${i}"`)).join('') : '<p class="empty">No hay equipos con esos filtros. Quita alguno o escríbenos por WhatsApp.</p>';
+  $('#grid').classList.toggle('is-anim', animNext); animNext = false;
   $('#results').textContent = `${list.length} ${list.length === 1 ? 'equipo' : 'equipos'}`;
   const n = (f.cat !== 'todas') + (f.fuel !== 'todos') + (f.kva !== 'todas');
   const badge = $('#filters-count'); badge.hidden = !n; badge.textContent = n;
@@ -208,10 +210,10 @@ export function initCatalog() {
   $('#cmp-clear').onclick = () => { compare = []; render(); };
 
   // filtros
-  dd = initDropdowns((k, v) => { f[k] = v; render(); });
+  dd = initDropdowns((k, v) => { f[k] = v; animNext = true; render(); });
   document.querySelectorAll('.seg').forEach((seg) => seg.addEventListener('click', (ev) => {
     const b = ev.target.closest('.seg__btn'); if (!b) return;
-    f[seg.dataset.filter] = b.dataset.v;
+    f[seg.dataset.filter] = b.dataset.v; animNext = true;
     seg.querySelectorAll('.seg__btn').forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on); });
     render();
   }));
