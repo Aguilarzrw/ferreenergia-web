@@ -8,7 +8,7 @@
   --f-display: 'Big Shoulders Display Variable', 'Impact', 'Arial Narrow', sans-serif;
   --f-body: 'Archivo Variable', system-ui, sans-serif;
   --f-mono: 'JetBrains Mono Variable', ui-monospace, Consolas, monospace;
-  --r: 14px; --nav-h: 68px;
+  --r: 14px; --nav-h: 60px;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }

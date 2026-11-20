@@ -71,6 +71,7 @@ const ICONS = {
   plan: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
   box: '<path d="M3 7.500 12 3l9 4.500v9L12 21l-9-4.500v-9Z"/><path d="M3 7.500 12 12l9-4.500M12 12v9"/>',
   search: '<circle cx="11" cy="11" r="6.500"/><path d="m20 20-4.500-4.500"/>',
+  chevron: '<path d="m6 9 6 6 6-6"/>',
   swap: '<path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/>',
 };
 

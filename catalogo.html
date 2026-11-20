@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es-VE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Catálogo | Ferreenergía VE</title>
+  <meta name="description" content="Plantas eléctricas Europower, AGG y generadores a gasolina, maquinaria agrícola y más. Precios en dólares." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title" content="Catálogo | Ferreenergía VE" />
+  <meta property="og:image" content="https://aguilarzrw.github.io/ferreenergia-web/og.png" />
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%img/logo.svg" />
+  <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body data-page="catalogo">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <main id="contenido">
+    <header class="phead">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ruta"><a href="./">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Catálogo</span></nav>
+        <h1 class="display">Catálogo</h1>
+        <p class="lead">Precios en dólares. Confirma la disponibilidad por WhatsApp.</p>
+      </div>
+    </header>
+
+    <section class="sec sec--tight" aria-label="Equipos">
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="search" role="search">
+            <span data-icon="search" data-size="18"></span>
+            <label class="sr" for="q">Buscar equipo</label>
+            <input id="q" type="text" inputmode="search" placeholder="Buscar: 15 KVA, diésel, motobomba…" autocomplete="off" spellcheck="false" />
+            <button class="search__clear" id="q-clear" type="button" aria-label="Borrar búsqueda" hidden><span data-icon="close" data-size="16"></span></button>
+          </div>
+          <button class="btn btn--ghost btn--sm filters-open" id="filters-open" type="button" aria-expanded="false" aria-controls="filters"><span data-icon="filter" data-size="18"></span> Filtros <b id="filters-count" hidden>0</b></button>
+        </div>
+
+        <div class="filters-backdrop" id="filters-backdrop" hidden></div>
+        <div class="filters" id="filters" role="group" aria-label="Filtros del catálogo">
+          <div class="filters__handle" aria-hidden="true"></div>
+          <fieldset><legend>Categoría</legend>
+            <div class="seg" data-filter="cat">
+              <button type="button" class="seg__btn is-on" data-v="todas" aria-pressed="true">Todas</button>
+              <button type="button" class="seg__btn" data-v="plantas" aria-pressed="false">Plantas eléctricas</button>
+              <button type="button" class="seg__btn" data-v="agro" aria-pressed="false">Maquinaria agrícola</button>
+              <button type="button" class="seg__btn" data-v="otros" aria-pressed="false">Otros equipos</button>
+            </div></fieldset>
+          <div class="dds">
+            <div class="dd" data-filter="fuel" data-label="Combustible">
+              <span class="dd__l" id="l-fuel">Combustible</span>
+              <button class="dd__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="l-fuel v-fuel"><span class="dd__v" id="v-fuel">Todos</span><span data-icon="chevron" data-size="16"></span></button>
+              <ul class="dd__list" role="listbox" aria-labelledby="l-fuel" tabindex="-1" hidden>
+                <li role="option" data-v="todos" aria-selected="true">Todos</li><li role="option" data-v="gasolina" aria-selected="false">Gasolina</li><li role="option" data-v="diesel" aria-selected="false">Diésel</li>
+              </ul>
+            </div>
+            <div class="dd" data-filter="kva" data-label="Potencia">
+              <span class="dd__l" id="l-kva">Potencia</span>
+              <button class="dd__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="l-kva v-kva"><span class="dd__v" id="v-kva">Cualquiera</span><span data-icon="chevron" data-size="16"></span></button>
+              <ul class="dd__list" role="listbox" aria-labelledby="l-kva" tabindex="-1" hidden>
+                <li role="option" data-v="todas" aria-selected="true">Cualquiera</li><li role="option" data-v="0-5" aria-selected="false">Hasta 5 KVA</li><li role="option" data-v="5-12" aria-selected="false">5 – 12 KVA</li><li role="option" data-v="12-30" aria-selected="false">12 – 30 KVA</li><li role="option" data-v="30-999" aria-selected="false">30 KVA o más</li>
+              </ul>
+            </div>
+          </div>
+          <div class="filters__foot"><button class="btn btn--ghost btn--sm" id="filters-clear" type="button">Limpiar</button><button class="btn btn--yellow btn--sm" id="filters-apply" type="button">Ver resultados</button></div>
+        </div>
+
+        <p class="results" id="results" aria-live="polite"></p>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Asesoría">
+      <div class="wrap strip__inner">
+        <p><b>¿No encuentras lo que buscas?</b> Escríbenos y lo conseguimos.</p>
+        <a class="btn btn--yellow btn--sm" data-wa="Hola Ferreenergía, estoy buscando un equipo que no veo en el catálogo." href="#"><span data-icon="wa" data-size="18"></span> Escribir por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

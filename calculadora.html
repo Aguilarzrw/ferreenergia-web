@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es-VE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Calculadora de potencia | Ferreenergía VE</title>
+  <meta name="description" content="Calcula cuántos KVA necesitas según tus equipos y recibe la planta recomendada del catálogo." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title" content="Calculadora de potencia | Ferreenergía VE" />
+  <meta property="og:image" content="https://aguilarzrw.github.io/ferreenergia-web/og.png" />
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%img/logo.svg" />
+  <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body data-page="calculadora">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <main id="contenido">
+    <header class="phead">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ruta"><a href="./">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Calculadora</span></nav>
+        <h1 class="display">¿Qué planta necesitas?</h1>
+        <p class="lead">Marca lo que quieres mantener encendido. Te decimos los KVA y qué planta del catálogo te sirve.</p>
+      </div>
+    </header>
+
+    <section class="sec sec--tight calc" aria-label="Calculadora">
+      <div class="wrap calc__layout">
+        <div class="calc__cards" id="calc-cards" role="group" aria-label="Equipos"></div>
+        <aside class="meter" id="meter" aria-labelledby="meter-title">
+          <h2 id="meter-title" class="meter__title">Tu consumo</h2>
+          <div class="meter__bar" role="progressbar" aria-label="Potencia estimada" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0" id="meter-bar">
+            <div class="meter__fill" id="meter-fill"></div>
+            <span class="meter__spark" id="meter-spark" data-icon="bolt" data-size="24"></span>
+            <div class="meter__ticks" aria-hidden="true"></div>
+          </div>
+          <div class="meter__nums">
+            <div><span>Potencia</span><strong id="out-w">0</strong><small>W</small></div>
+            <div><span>Recomendado</span><strong id="out-kva">0</strong><small>KVA</small></div>
+          </div>
+          <div class="meter__rec" id="out-rec" aria-live="polite">Selecciona al menos un equipo.</div>
+          <a class="btn btn--yellow btn--block" id="out-wa" href="#" aria-disabled="true"><span data-icon="wa" data-size="20"></span> Pedir esta planta por WhatsApp</a>
+          <button class="link-btn" id="calc-reset" type="button">Limpiar selección</button>
+          <p class="meter__note">Cálculo referencial. Nuestro equipo técnico te confirma la planta ideal.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

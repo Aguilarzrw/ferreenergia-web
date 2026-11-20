@@ -5,7 +5,7 @@ import { waLink, precio, kvaTxt, SEDES, WA } from './config.js';
 const $ = (s, r = document) => r.querySelector(s);
 const FUEL = { diesel: 'Diésel', gasolina: 'Gasolina' };
 const f = { cat: 'todas', fuel: 'todos', kva: 'todas', q: '' };
-const LIMIT = 6;
+const LIMIT = Infinity;
 let showAll = false;
 const pTxt = (p) => (p.precio == null ? 'Consultar' : precio(p.precio));
 let compare = [];
@@ -36,9 +36,9 @@ function filtrar() {
   });
 }
 
-function card(p) {
+function card(p, opts = {}) {
   const checked = compare.includes(p.id);
-  const canCmp = p.categoria === 'plantas';
+  const canCmp = p.categoria === 'plantas' && !opts.noCmp;
   return `<article class="card" data-id="${p.id}">
     <div class="card__img">${visual(p)}
       ${p.kva ? `<span class="card__kva">${kvaTxt(p.kva)} KVA</span>` : ''}
@@ -49,7 +49,7 @@ function card(p) {
       <div class="badges">${p.badges.map((b) => `<span class="badge ${b === 'ATS' ? 'badge--ats' : ''}">${b}</span>`).join('')}</div>
       <div class="card__foot">
         <div class="price ${p.precio == null ? 'price--ask' : ''}">${pTxt(p)}<small>${p.precio == null ? 'Precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · referencial' : '')}</small></div>
-        ${canCmp ? `<label class="cmp"><input type="checkbox" data-cmp="${p.id}" ${checked ? 'checked' : ''} /> Comparar</label>` : ''}
+        ${canCmp ? `<label class="cmp"><input class="cmp__in" type="checkbox" data-cmp="${p.id}" ${checked ? 'checked' : ''} /><span class="cmp__box" aria-hidden="true">${icon('check', 14)}</span><span>Comparar</span></label>` : ''}
       </div>
     </div></article>`;
 }
@@ -58,9 +58,7 @@ function render() {
   const list = filtrar();
   const active = f.cat !== 'todas' || f.fuel !== 'todos' || f.kva !== 'todas' || f.q;
   const shown = active || showAll ? list : list.slice(0, LIMIT);
-  $('#more').hidden = active || showAll || list.length <= LIMIT;
-  $('#more').textContent = `Ver todo el catálogo (${list.length})`;
-  $('#grid').innerHTML = list.length ? shown.map(card).join('') : '<p class="empty">No encontramos equipos con esos filtros. Escríbenos y lo conseguimos.</p>';
+  $('#grid').innerHTML = list.length ? shown.map(card).join('') : '<p class="empty">No hay equipos con esos filtros. Quita alguno o escríbenos por WhatsApp.</p>';
   $('#results').textContent = `${list.length} ${list.length === 1 ? 'equipo' : 'equipos'}`;
   const n = (f.cat !== 'todas') + (f.fuel !== 'todos') + (f.kva !== 'todas');
   const badge = $('#filters-count'); badge.hidden = !n; badge.textContent = n;
@@ -70,7 +68,7 @@ function render() {
 function updateTray() {
   const tray = $('#cmp-tray');
   tray.hidden = compare.length === 0;
-  $('#cmp-count').textContent = `${compare.length} de 3`;
+  $('#cmp-count').textContent = `${compare.length} de 3 plantas`;
   $('#cmp-open').disabled = compare.length < 2;
   $('#cmp-open').setAttribute('aria-disabled', compare.length < 2);
   $('#cmp-open').style.opacity = compare.length < 2 ? 0.5 : 1;
@@ -89,51 +87,108 @@ function openProduct(id, trigger) {
     $('.pd__main', dlg).innerHTML = visual(p, idx);
     dlg.querySelectorAll('.pd__thumbs button').forEach((b, i) => b.setAttribute('aria-current', i === idx));
   };
+  const chips = [p.kva ? kvaTxt(p.kva) + ' KVA' : '', p.combustible ? FUEL[p.combustible] : '', ...p.badges].filter(Boolean);
   dlg.innerHTML = `
-    <button class="dlg__close" type="button" aria-label="Cerrar ficha">${icon('close', 22)}</button>
-    <div class="pd">
-      <div class="pd__gal"><div class="pd__main"></div>
-        ${n > 1 ? `<div class="pd__thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" aria-label="Ver foto ${i + 1}">${visual(p, i)}</button>`).join('')}</div>` : ''}
-        ${!(p.imagenes || []).length ? '<p class="note-ref">Imagen ilustrativa. Foto real próximamente.</p>' : ''}
+    <div class="dlg__head"><h3 id="pd-title">${nombreLimpio(p)}</h3><button class="dlg__close" type="button" aria-label="Cerrar ficha">${icon('close', 20)}</button></div>
+    <div class="dlg__body">
+      <div class="pd">
+        <div class="pd__gal"><div class="pd__main"></div>
+          ${n > 1 ? `<div class="pd__thumbs">${Array.from({ length: n }, (_, i) => `<button type="button" aria-label="Ver foto ${i + 1}">${visual(p, i)}</button>`).join('')}</div>` : ''}
+          ${!(p.imagenes || []).length ? '<p class="note-ref">Imagen ilustrativa. Foto real próximamente.</p>' : ''}
+        </div>
+        <div class="pd__info">
+          <div class="badges">${chips.map((c, i) => `<span class="badge ${i === 0 && p.kva ? 'badge--ats' : ''}">${c}</span>`).join('')}</div>
+          <p>${p.descripcion}</p>
+          <table class="spec"><caption class="sr">Especificaciones técnicas</caption><tbody>${Object.entries(p.specs).map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join('')}</tbody></table>
+          <p class="avail"><span class="avail__l">Disponible en</span>${p.disponible.map((s) => `<span class="avail__p">${icon('pin', 14)}${s}</span>`).join('')}</p>
+        </div>
       </div>
-      <div class="pd__info">
-        <div class="badges">${p.kva ? `<span class="badge badge--ats">${kvaTxt(p.kva)} KVA</span>` : ''}${p.combustible ? `<span class="badge">${FUEL[p.combustible]}</span>` : ''}${p.badges.map((b) => `<span class="badge">${b}</span>`).join('')}</div>
-        <h3 id="pd-title">${nombreLimpio(p)}</h3>
-        <p>${p.descripcion}</p>
-        <div class="pd__price">${pTxt(p)}<small>${p.precio == null ? 'precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · precio referencial' : '')}</small></div>
-        <table class="spec"><caption class="sr">Especificaciones técnicas</caption><tbody>${Object.entries(p.specs).map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join('')}</tbody></table>
-        <div class="avail"><strong>Disponible en:</strong>${p.disponible.map((s) => `<span>${icon('pin', 16)}${s}</span>`).join('')}</div>
-        <a class="btn btn--yellow btn--lg btn--block" target="_blank" rel="noopener" href="${waLink(msgProducto(p), WA.principal)}">${icon('wa', 22)} Lo quiero: WhatsApp</a>
-      </div>
+    </div>
+    <div class="dlg__foot">
+      <div class="pd__price">${pTxt(p)}<small>${p.precio == null ? 'precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · referencial' : '')}</small></div>
+      <a class="btn btn--yellow" target="_blank" rel="noopener" href="${waLink(msgProducto(p), WA.principal)}">${icon('wa', 20)} Pedir por WhatsApp</a>
     </div>`;
   dlg.querySelector('.dlg__close').onclick = () => dlg.close();
   dlg.querySelectorAll('.pd__thumbs button').forEach((b, i) => (b.onclick = () => { idx = i; paint(); }));
   paint();
   dlg.showModal();
+  dlg.querySelector('.dlg__body').scrollTop = 0;
   dlg.addEventListener('close', () => trigger?.focus(), { once: true });
+}
+
+const si = (v) => (v ? 'Sí' : 'No');
+function filasComparar(items) {
+  const rows = [
+    ['Precio', (p) => `<b>${pTxt(p)}</b>${p.precio != null && p.ejemplo ? ' <em>ref.</em>' : ''}`],
+    ['Potencia', (p) => (p.kva ? kvaTxt(p.kva) + ' KVA' : '—')],
+    ['Combustible', (p) => (p.combustible ? FUEL[p.combustible] : '—')],
+    ['Voltaje', (p) => (p.voltaje && p.voltaje !== '—' ? p.voltaje : '—')],
+    ['ATS', (p) => si(p.badges.includes('ATS'))],
+    ['Insonorizada', (p) => si(p.badges.includes('Insonorizada'))],
+    ['Arranque', (p) => (p.badges.includes('Arranque eléctrico') ? 'Eléctrico' : (p.specs['Arranque'] || '—'))],
+    ['Disponible en', (p) => p.disponible.join(' y ')],
+  ];
+  return rows.filter(([, fn]) => items.some((p) => fn(p) !== '—'));
 }
 
 function openCompare() {
   const dlg = $('#compare-dialog');
   const items = compare.map((id) => data.productos.find((p) => p.id === id));
-  const keys = [...new Set(items.flatMap((p) => Object.keys(p.specs)))];
-  dlg.innerHTML = `<button class="dlg__close" type="button" aria-label="Cerrar comparación">${icon('close', 22)}</button>
-    <div class="cd"><h3 id="cd-title">Comparar plantas</h3><div class="cd__scroll"><table>
-      <thead><tr><th scope="col"><span class="sr">Característica</span></th>${items.map((p) => `<th scope="col">${nombreLimpio(p)}</th>`).join('')}</tr></thead>
-      <tbody>
-        <tr><th scope="row">Precio</th>${items.map((p) => `<td><b>${pTxt(p)}</b>${p.ejemplo ? ' (ref.)' : ''}</td>`).join('')}</tr>
-        <tr><th scope="row">KVA</th>${items.map((p) => `<td>${kvaTxt(p.kva)}</td>`).join('')}</tr>
-        ${keys.map((k) => `<tr><th scope="row">${k}</th>${items.map((p) => `<td>${p.specs[k] || '—'}</td>`).join('')}</tr>`).join('')}
-        <tr><th scope="row">Disponible</th>${items.map((p) => `<td>${p.disponible.join(', ')}</td>`).join('')}</tr>
-        <tr><th scope="row"><span class="sr">Pedir</span></th>${items.map((p) => `<td><a class="btn btn--yellow btn--sm" target="_blank" rel="noopener" href="${waLink(msgProducto(p))}">WhatsApp</a></td>`).join('')}</tr>
-      </tbody></table></div></div>`;
+  const rows = filasComparar(items);
+  dlg.innerHTML = `<div class="dlg__head"><h3 id="cd-title">Comparar plantas <span class="dlg__count">${items.length} de 3</span></h3><button class="dlg__close" type="button" aria-label="Cerrar comparación">${icon('close', 20)}</button></div>
+    <div class="dlg__body"><table class="cmp-table">
+      <thead><tr><td></td>${items.map((p) => `<th scope="col"><div class="cmp-h"><div class="cmp-h__img">${visual(p)}</div><span class="cmp-h__n">${nombreLimpio(p)}</span><button class="cmp-h__rm" type="button" data-rm="${p.id}">Quitar</button></div></th>`).join('')}</tr></thead>
+      <tbody>${rows.map(([k, fn]) => `<tr><th scope="row">${k}</th>${items.map((p) => `<td>${fn(p)}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>
+    <div class="dlg__foot dlg__foot--cmp">${items.map((p) => `<a class="btn btn--yellow btn--sm" target="_blank" rel="noopener" href="${waLink(msgProducto(p))}">${icon('wa', 16)} Pedir ${kvaTxt(p.kva)} KVA</a>`).join('')}</div>`;
   dlg.querySelector('.dlg__close').onclick = () => dlg.close();
-  dlg.showModal();
+  dlg.querySelectorAll('[data-rm]').forEach((b) => (b.onclick = () => {
+    compare = compare.filter((x) => x !== b.dataset.rm); render();
+    compare.length > 1 ? openCompare() : dlg.close();
+  }));
+  if (!dlg.open) dlg.showModal();
+}
+
+let dd = null;
+const bindDialogs = () => document.querySelectorAll('dialog').forEach((d) => d.addEventListener('click', (ev) => { if (ev.target === d) d.close(); }));
+
+// Desplegable propio (sustituye al <select> nativo): botón + listbox con teclado.
+function initDropdowns(onChange) {
+  const dds = [...document.querySelectorAll('.dd')];
+  const setOpen = (d, on) => { d.querySelector('.dd__list').hidden = !on; d.querySelector('.dd__btn').setAttribute('aria-expanded', on); d.classList.toggle('is-open', on); };
+  const closeAll = (except) => dds.forEach((d) => { if (d !== except) setOpen(d, false); });
+  const mark = (d, li) => { d.querySelectorAll('[role=option]').forEach((o) => o.setAttribute('aria-selected', o === li)); d.querySelector('.dd__v').textContent = li.textContent; };
+  dds.forEach((d) => {
+    const b = d.querySelector('.dd__btn'), l = d.querySelector('.dd__list');
+    [...l.children].forEach((li) => li.setAttribute('tabindex', '-1'));
+    const openIt = () => { closeAll(d); setOpen(d, true); (l.querySelector('[aria-selected=true]') || l.firstElementChild).focus(); };
+    b.addEventListener('click', () => (l.hidden ? openIt() : setOpen(d, false)));
+    b.addEventListener('keydown', (e) => { if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); openIt(); } });
+    l.addEventListener('click', (e) => { const li = e.target.closest('[role=option]'); if (!li) return; mark(d, li); onChange(d.dataset.filter, li.dataset.v); setOpen(d, false); b.focus(); });
+    l.addEventListener('keydown', (e) => {
+      const o = [...l.children], i = o.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); o[Math.min(i + 1, o.length - 1)].focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); o[Math.max(i - 1, 0)].focus(); }
+      else if (e.key === 'Home') { e.preventDefault(); o[0].focus(); }
+      else if (e.key === 'End') { e.preventDefault(); o[o.length - 1].focus(); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.activeElement.click(); }
+      else if (e.key === 'Escape' || e.key === 'Tab') { if (e.key === 'Escape') e.stopPropagation(); setOpen(d, false); b.focus(); }
+    });
+  });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.dd')) closeAll(); });
+  return { reset() { dds.forEach((d) => mark(d, d.querySelector('[role=option]'))); } };
+}
+
+const DESTACADOS = ['europower-dg15000se', 'europower-em3800', 'generador-dual-12000w', 'agg-66'];
+export function initFeatured() {
+  const g = $('#featured'); if (!g) return;
+  g.innerHTML = DESTACADOS.map((id) => card(data.productos.find((p) => p.id === id), { noCmp: true })).join('');
+  g.addEventListener('click', (ev) => { const o = ev.target.closest('[data-open]'); if (o) openProduct(o.dataset.open, o); });
+  bindDialogs();
 }
 
 export function initCatalog() {
   render();
-  $('#more').onclick = () => { showAll = true; render(); };
   const grid = $('#grid');
   grid.addEventListener('click', (ev) => {
     const o = ev.target.closest('[data-open]'); if (o) openProduct(o.dataset.open, o);
@@ -141,7 +196,7 @@ export function initCatalog() {
   grid.addEventListener('change', (ev) => {
     const c = ev.target.closest('[data-cmp]'); if (!c) return;
     if (c.checked) {
-      if (compare.length >= 3) { c.checked = false; $('#results').textContent = 'Máximo 3 plantas para comparar.'; return; }
+      if (compare.length >= 3) { c.checked = false; $('#results').textContent = 'Puedes comparar hasta 3 plantas.'; return; }
       compare.push(c.dataset.cmp);
     } else compare = compare.filter((x) => x !== c.dataset.cmp);
     updateTray();
@@ -150,18 +205,20 @@ export function initCatalog() {
   $('#cmp-clear').onclick = () => { compare = []; render(); };
 
   // filtros
-  document.querySelectorAll('select[data-filter]').forEach((sel) => sel.addEventListener('change', () => { f[sel.dataset.filter] = sel.value; render(); }));
+  dd = initDropdowns((k, v) => { f[k] = v; render(); });
   document.querySelectorAll('.seg').forEach((seg) => seg.addEventListener('click', (ev) => {
     const b = ev.target.closest('.seg__btn'); if (!b) return;
     f[seg.dataset.filter] = b.dataset.v;
     seg.querySelectorAll('.seg__btn').forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on); });
     render();
   }));
-  let tm; $('#q').addEventListener('input', (ev) => { clearTimeout(tm); tm = setTimeout(() => { f.q = norm(ev.target.value.trim()); render(); }, 120); });
+  let tm; const qc = $('#q-clear');
+  $('#q').addEventListener('input', (ev) => { qc.hidden = !ev.target.value; clearTimeout(tm); tm = setTimeout(() => { f.q = norm(ev.target.value.trim()); render(); }, 120); });
+  qc.onclick = () => { const q = $('#q'); q.value = ''; qc.hidden = true; f.q = ''; render(); q.focus(); };
   $('#filters-clear').onclick = () => {
     Object.assign(f, { cat: 'todas', fuel: 'todos', kva: 'todas' });
     document.querySelectorAll('.seg').forEach((seg) => seg.querySelectorAll('.seg__btn').forEach((x, i) => { x.classList.toggle('is-on', i === 0); x.setAttribute('aria-pressed', i === 0); }));
-    document.querySelectorAll('select[data-filter]').forEach((sel) => { sel.selectedIndex = 0; });
+    dd.reset();
     render();
   };
 
@@ -175,8 +232,7 @@ export function initCatalog() {
   back.onclick = () => toggle(false);
   $('#filters-apply').onclick = () => toggle(false);
   addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && sheet.classList.contains('is-open')) toggle(false); });
-  // clic fuera del dialog = cerrar
-  document.querySelectorAll('dialog').forEach((d) => d.addEventListener('click', (ev) => { if (ev.target === d) d.close(); }));
+  bindDialogs();
 }
 
 export { SEDES };
