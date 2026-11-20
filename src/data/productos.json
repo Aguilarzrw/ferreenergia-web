@@ -1,123 +1,88 @@
 {
-  "_nota": "TODO confirmar con cliente: todos los precios, modelos y specs. 'ejemplo: true' = dato inventado para la demo. Fotos reales: public/img/productos/<id>-1.webp (y declarar en 'imagenes').",
+  "_nota": "Fuente: publicaciones de Instagram @ferrenergia2020 (nov 2026) para los productos con 'ejemplo: false'. 'ejemplo: true' = dato inventado para la demo. 'precio: null' = se muestra 'Consultar precio'. TODO confirmar todo con el cliente.",
   "sedes": ["San Jacinto", "Camaguán"],
   "productos": [
     {
       "id": "europower-dg15000se", "nombre": "Europower 15 KVA DG15000SE", "marca": "Europower",
       "categoria": "plantas", "kva": 15, "potenciaW": 12000, "combustible": "diesel",
-      "voltaje": "110/220V", "fase": "Monofásico", "precio": 3150, "ejemplo": false,
-      "badges": ["ATS", "Insonorizada", "Arranque eléctrico"],
-      "specs": { "Potencia continua": "12 kW / 15 KVA", "Voltaje": "110/220 V", "Combustible": "Diésel", "Arranque": "Eléctrico", "Cabina": "Insonorizada", "Tablero": "ATS incluido", "Autonomía aprox.": "10 h a 75% carga" },
+      "voltaje": "110/220V", "precio": 3150, "ejemplo": false,
+      "badges": ["ATS", "Insonorizada"],
+      "specs": { "Potencia": "15 KVA", "Voltaje": "110/220 V (monofásica, 60 Hz)", "Combustible": "Diésel", "Cabina": "Insonorizada, con puerta de acceso lateral", "Tablero": "ATS incluido", "Incluye": "Envío e instalación disponibles" },
       "descripcion": "Planta diésel insonorizada para comercios, fincas y viviendas grandes. Con ATS: si se va la luz, ella arranca sola.",
-      "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
+      "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["europower-dg15000se-1.webp", "europower-dg15000se-2.webp"]
     },
     {
       "id": "europower-em3800", "nombre": "Europower EM3800", "marca": "Europower",
-      "categoria": "plantas", "kva": 3.8, "potenciaW": 3300, "combustible": "gasolina",
-      "voltaje": "110V", "fase": "Monofásico", "precio": 400, "ejemplo": false,
-      "badges": ["Arranque eléctrico"],
-      "specs": { "Potencia continua": "3,3 kW / 3,8 KVA", "Voltaje": "110 V", "Combustible": "Gasolina", "Arranque": "Eléctrico + retráctil", "Cabina": "Abierta", "Tablero": "Manual", "Autonomía aprox.": "8 h a 50% carga" },
-      "descripcion": "La planta que cualquier hogar necesita: nevera, luces, TV y router sin interrupciones.",
-      "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
-    },
-    {
-      "id": "europower-ep2500", "nombre": "Europower EP2500 (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 2.5, "potenciaW": 2000, "combustible": "gasolina",
-      "voltaje": "110V", "fase": "Monofásico", "precio": 280, "ejemplo": true,
+      "categoria": "plantas", "kva": 3.5, "potenciaW": 2500, "combustible": "gasolina",
+      "voltaje": "110V", "precio": 400, "ejemplo": false,
       "badges": [],
-      "specs": { "Potencia continua": "2,0 kW / 2,5 KVA", "Voltaje": "110 V", "Combustible": "Gasolina", "Arranque": "Retráctil", "Cabina": "Abierta", "Tablero": "Manual", "Autonomía aprox.": "9 h a 50% carga" },
-      "descripcion": "Compacta y económica para lo básico: nevera, luces y carga de equipos.",
-      "disponible": ["San Jacinto"], "imagenes": []
+      "specs": { "Potencia continua": "2.500 W", "Potencia pico": "2.800 W", "Motor": "7,0 HP a gasolina", "Arranque": "Manual (por cuerda)", "Cabina": "Abierta" },
+      "descripcion": "Respaldo para lo esencial del hogar: nevera, luces, TV y router sin interrupciones.",
+      "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["europower-em3800-1.webp"]
     },
     {
-      "id": "europower-ep6500e", "nombre": "Europower EP6500E (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 6.5, "potenciaW": 5200, "combustible": "gasolina",
-      "voltaje": "110/220V", "fase": "Monofásico", "precio": 780, "ejemplo": true,
-      "badges": ["Arranque eléctrico"],
-      "specs": { "Potencia continua": "5,2 kW / 6,5 KVA", "Voltaje": "110/220 V", "Combustible": "Gasolina", "Arranque": "Eléctrico", "Cabina": "Abierta", "Tablero": "Manual", "Autonomía aprox.": "10 h a 50% carga" },
-      "descripcion": "Para casas con aire acondicionado, bomba de agua y nevera al mismo tiempo.",
-      "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
+      "id": "generador-dual-12000w", "nombre": "Generador Dual 12.000 W con ATS", "marca": "Sundi Power",
+      "categoria": "plantas", "kva": 12, "potenciaW": 12000, "combustible": "gasolina",
+      "voltaje": "110/220V", "precio": null, "ejemplo": false,
+      "badges": ["ATS", "Arranque eléctrico"],
+      "specs": { "Potencia": "12.000 W", "Voltaje": "110/220 V", "Combustible": "Gasolina / gas (dual)", "Arranque": "Eléctrico", "Tablero": "ATS incluido" },
+      "descripcion": "Generador dual combustible con encendido eléctrico y ATS incluido.",
+      "disponible": ["San Jacinto"], "imagenes": ["generador-dual-12000w-1.webp"]
     },
     {
-      "id": "europower-ep9500e", "nombre": "Europower EP9500E (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 9.5, "potenciaW": 7600, "combustible": "gasolina",
-      "voltaje": "110/220V", "fase": "Monofásico", "precio": 1150, "ejemplo": true,
-      "badges": ["Arranque eléctrico"],
-      "specs": { "Potencia continua": "7,6 kW / 9,5 KVA", "Voltaje": "110/220 V", "Combustible": "Gasolina", "Arranque": "Eléctrico", "Cabina": "Abierta", "Tablero": "Manual", "Autonomía aprox.": "8 h a 50% carga" },
-      "descripcion": "Respaldo fuerte para comercios pequeños y casas grandes con varios aires.",
-      "disponible": ["San Jacinto"], "imagenes": []
-    },
-    {
-      "id": "europower-d10", "nombre": "Europower 10 KVA Diésel (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 10, "potenciaW": 8000, "combustible": "diesel",
-      "voltaje": "110/220V", "fase": "Monofásico", "precio": 2350, "ejemplo": true,
-      "badges": ["Insonorizada", "Arranque eléctrico"],
-      "specs": { "Potencia continua": "8 kW / 10 KVA", "Voltaje": "110/220 V", "Combustible": "Diésel", "Arranque": "Eléctrico", "Cabina": "Insonorizada", "Tablero": "Manual (ATS opcional)", "Autonomía aprox.": "12 h a 75% carga" },
-      "descripcion": "Diésel silenciosa para negocios que no pueden parar: panaderías, farmacias, tiendas.",
-      "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
-    },
-    {
-      "id": "europower-d25", "nombre": "Europower 25 KVA Diésel ATS (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 25, "potenciaW": 20000, "combustible": "diesel",
-      "voltaje": "220/380V", "fase": "Trifásico", "precio": 4900, "ejemplo": true,
-      "badges": ["ATS", "Insonorizada", "Arranque eléctrico"],
-      "specs": { "Potencia continua": "20 kW / 25 KVA", "Voltaje": "220/380 V", "Combustible": "Diésel", "Arranque": "Eléctrico", "Cabina": "Insonorizada", "Tablero": "ATS incluido", "Autonomía aprox.": "14 h a 75% carga" },
-      "descripcion": "Trifásica para fincas, galpones, bombas y motores industriales.",
-      "disponible": ["Camaguán", "San Jacinto"], "imagenes": []
-    },
-    {
-      "id": "europower-d40", "nombre": "Europower 40 KVA Diésel ATS (ejemplo)", "marca": "Europower",
-      "categoria": "plantas", "kva": 40, "potenciaW": 32000, "combustible": "diesel",
-      "voltaje": "220/380V", "fase": "Trifásico", "precio": 7600, "ejemplo": true,
-      "badges": ["ATS", "Insonorizada", "Arranque eléctrico"],
-      "specs": { "Potencia continua": "32 kW / 40 KVA", "Voltaje": "220/380 V", "Combustible": "Diésel", "Arranque": "Eléctrico", "Cabina": "Insonorizada", "Tablero": "ATS incluido", "Autonomía aprox.": "16 h a 75% carga" },
-      "descripcion": "Potencia industrial para agroindustria, galpones y comercios grandes.",
-      "disponible": ["Camaguán"], "imagenes": []
-    },
-    {
-      "id": "desmalezadora-52", "nombre": "Desmalezadora 52cc (ejemplo)", "marca": "Europower",
-      "categoria": "agro", "kva": null, "potenciaW": null, "combustible": "gasolina",
-      "voltaje": "—", "fase": "—", "precio": 210, "ejemplo": true,
+      "id": "generador-3500w", "nombre": "Generador 3.500 W", "marca": "—",
+      "categoria": "plantas", "kva": 3.5, "potenciaW": 3500, "combustible": "gasolina",
+      "voltaje": "110/220V", "precio": null, "ejemplo": false,
       "badges": [],
-      "specs": { "Motor": "52 cc, 2 tiempos", "Combustible": "Gasolina mezclada", "Corte": "Hilo y cuchilla", "Peso": "~8 kg" },
-      "descripcion": "Control de maleza en fincas y potreros con motor de 52 cc.",
+      "specs": { "Potencia": "3.500 W", "Voltaje": "110/220 V", "Combustible": "Gasolina", "Arranque": "Manual" },
+      "descripcion": "Generador portátil a gasolina para el hogar y pequeños negocios.",
+      "disponible": ["San Jacinto"], "imagenes": ["generador-3500w-1.webp"]
+    },
+    {
+      "id": "generador-klox-3500w", "nombre": "Generador KLOX 3.500 W", "marca": "KLOX",
+      "categoria": "plantas", "kva": 3.5, "potenciaW": 3500, "combustible": "gasolina",
+      "voltaje": "110/220V", "precio": null, "ejemplo": false,
+      "badges": [],
+      "specs": { "Potencia": "3.500 W", "Motor": "6,5 HP, 4 tiempos", "Combustible": "Gasolina", "Ruedas": "Sí" },
+      "descripcion": "Generador a gasolina con ruedas, fácil de mover en obra o finca.",
+      "disponible": ["San Jacinto"], "imagenes": ["generador-klox-3500w-1.webp"]
+    },
+    { "id": "agg-66", "nombre": "AGG 66 KVA", "marca": "AGG Power Solutions", "categoria": "plantas", "kva": 66, "potenciaW": 52800, "combustible": "diesel", "voltaje": "—", "precio": 12200, "ejemplo": false, "badges": [], "specs": { "Potencia": "66 KVA", "Incluye": "Flete, kit de servicio e hidrojet land" }, "descripcion": "Planta industrial AGG para proyectos, galpones y agroindustria.", "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["agg-1.webp"] },
+    { "id": "agg-75", "nombre": "AGG 75 KVA", "marca": "AGG Power Solutions", "categoria": "plantas", "kva": 75, "potenciaW": 60000, "combustible": "diesel", "voltaje": "—", "precio": 16600, "ejemplo": false, "badges": [], "specs": { "Potencia": "75 KVA", "Incluye": "Flete, kit de servicio e hidrojet land" }, "descripcion": "Planta industrial AGG para proyectos, galpones y agroindustria.", "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["agg-1.webp"] },
+    { "id": "agg-83", "nombre": "AGG 83 KVA", "marca": "AGG Power Solutions", "categoria": "plantas", "kva": 83, "potenciaW": 66400, "combustible": "diesel", "voltaje": "—", "precio": 17000, "ejemplo": false, "badges": [], "specs": { "Potencia": "83 KVA", "Incluye": "Flete, kit de servicio e hidrojet land" }, "descripcion": "Planta industrial AGG para proyectos, galpones y agroindustria.", "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["agg-1.webp"] },
+    { "id": "agg-110", "nombre": "AGG 110 KVA", "marca": "AGG Power Solutions", "categoria": "plantas", "kva": 110, "potenciaW": 88000, "combustible": "diesel", "voltaje": "—", "precio": 17850, "ejemplo": false, "badges": [], "specs": { "Potencia": "110 KVA", "Incluye": "Flete, kit de servicio e hidrojet land" }, "descripcion": "Planta industrial AGG para proyectos, galpones y agroindustria.", "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["agg-1.webp"] },
+    { "id": "agg-150", "nombre": "AGG 150 KVA", "marca": "AGG Power Solutions", "categoria": "plantas", "kva": 150, "potenciaW": 120000, "combustible": "diesel", "voltaje": "—", "precio": 22500, "ejemplo": false, "badges": [], "specs": { "Potencia": "150 KVA", "Incluye": "Flete, kit de servicio e hidrojet land" }, "descripcion": "Planta industrial AGG para proyectos, galpones y agroindustria.", "disponible": ["San Jacinto", "Camaguán"], "imagenes": ["agg-1.webp"] },
+    {
+      "id": "desmalezadora-52", "nombre": "Desmalezadora 52cc (ejemplo)", "marca": "—",
+      "categoria": "agro", "kva": null, "potenciaW": null, "combustible": "gasolina",
+      "voltaje": "—", "precio": 210, "ejemplo": true, "badges": [],
+      "specs": { "Motor": "52 cc, 2 tiempos", "Combustible": "Gasolina mezclada", "Corte": "Hilo y cuchilla" },
+      "descripcion": "Control de maleza en fincas y potreros.",
       "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
     },
     {
-      "id": "motobomba-3", "nombre": "Motobomba 3\" Gasolina (ejemplo)", "marca": "Europower",
+      "id": "motobomba-3", "nombre": "Motobomba 3\" Gasolina (ejemplo)", "marca": "—",
       "categoria": "agro", "kva": null, "potenciaW": null, "combustible": "gasolina",
-      "voltaje": "—", "fase": "—", "precio": 320, "ejemplo": true,
-      "badges": ["Arranque retráctil"],
-      "specs": { "Motor": "7 HP, 4 tiempos", "Succión/descarga": "3\" / 3\"", "Caudal máx.": "~1.000 L/min", "Combustible": "Gasolina" },
+      "voltaje": "—", "precio": 320, "ejemplo": true, "badges": [],
+      "specs": { "Motor": "7 HP, 4 tiempos", "Succión/descarga": "3\" / 3\"", "Caudal máx.": "~1.000 L/min" },
       "descripcion": "Riego y trasvase de agua en finca. Caudal alto, mantenimiento simple.",
       "disponible": ["Camaguán", "San Jacinto"], "imagenes": []
     },
     {
-      "id": "motocultor-7hp", "nombre": "Motocultor 7 HP (ejemplo)", "marca": "Europower",
+      "id": "motocultor-7hp", "nombre": "Motocultor 7 HP (ejemplo)", "marca": "—",
       "categoria": "agro", "kva": null, "potenciaW": null, "combustible": "gasolina",
-      "voltaje": "—", "fase": "—", "precio": 890, "ejemplo": true,
-      "badges": [],
-      "specs": { "Motor": "7 HP, 4 tiempos", "Ancho de labor": "~80 cm", "Transmisión": "Adelante / reversa", "Combustible": "Gasolina" },
+      "voltaje": "—", "precio": 890, "ejemplo": true, "badges": [],
+      "specs": { "Motor": "7 HP, 4 tiempos", "Ancho de labor": "~80 cm", "Transmisión": "Adelante / reversa" },
       "descripcion": "Prepara la tierra para siembra de forma rápida y pareja.",
       "disponible": ["Camaguán"], "imagenes": []
     },
     {
       "id": "termotanque-50", "nombre": "Termotanque 50 L (ejemplo)", "marca": "—",
       "categoria": "otros", "kva": null, "potenciaW": null, "combustible": null,
-      "voltaje": "110/220V", "fase": "—", "precio": 190, "ejemplo": true,
-      "badges": [],
-      "specs": { "Capacidad": "50 L", "Voltaje": "110/220 V", "Potencia": "1.500 W", "Uso": "Hogar / comercio" },
+      "voltaje": "110/220V", "precio": 190, "ejemplo": true, "badges": [],
+      "specs": { "Capacidad": "50 L", "Voltaje": "110/220 V", "Potencia": "1.500 W" },
       "descripcion": "Agua caliente lista para toda la casa.",
       "disponible": ["San Jacinto"], "imagenes": []
-    },
-    {
-      "id": "bateria-12v", "nombre": "Batería 12 V 100 Ah (ejemplo)", "marca": "—",
-      "categoria": "otros", "kva": null, "potenciaW": null, "combustible": null,
-      "voltaje": "12V", "fase": "—", "precio": 140, "ejemplo": true,
-      "badges": [],
-      "specs": { "Voltaje": "12 V", "Capacidad": "100 Ah", "Uso": "Arranque de plantas / respaldo" },
-      "descripcion": "Para el arranque eléctrico de tu planta o respaldo de bajo consumo.",
-      "disponible": ["San Jacinto", "Camaguán"], "imagenes": []
     }
   ]
 }

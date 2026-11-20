@@ -21,7 +21,6 @@
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
   <div class="cursor-glow" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <div class="nav__bar">
@@ -80,11 +79,6 @@
             <a class="btn btn--yellow btn--lg" href="#catalogo">Ver plantas eléctricas <span data-icon="arrow" data-size="20"></span></a>
             <a class="btn btn--ghost btn--lg" href="#calculadora">Calcula tu planta</a>
           </div>
-          <ul class="chips" aria-label="Datos rápidos">
-            <li><span>KVA</span>2,5 – 40</li>
-            <li><span>COMB.</span>Gasolina / Diésel</li>
-            <li><span>SERV.</span>Instalación y soporte</li>
-          </ul>
         </div>
         <p class="hero__hint" id="hero-hint" aria-hidden="true">Desliza <span></span></p>
       </div>
@@ -162,25 +156,16 @@
               <button type="button" class="seg__btn" data-v="agro" aria-pressed="false">Maquinaria agrícola</button>
               <button type="button" class="seg__btn" data-v="otros" aria-pressed="false">Otros equipos</button>
             </div></fieldset>
-          <fieldset><legend>Combustible</legend>
-            <div class="seg" data-filter="fuel">
-              <button type="button" class="seg__btn is-on" data-v="todos" aria-pressed="true">Todos</button>
-              <button type="button" class="seg__btn" data-v="gasolina" aria-pressed="false">Gasolina</button>
-              <button type="button" class="seg__btn" data-v="diesel" aria-pressed="false">Diésel</button>
-            </div></fieldset>
-          <fieldset><legend>Potencia (KVA)</legend>
-            <div class="seg" data-filter="kva">
-              <button type="button" class="seg__btn is-on" data-v="todas" aria-pressed="true">Cualquiera</button>
-              <button type="button" class="seg__btn" data-v="0-5" aria-pressed="false">Hasta 5</button>
-              <button type="button" class="seg__btn" data-v="5-12" aria-pressed="false">5 – 12</button>
-              <button type="button" class="seg__btn" data-v="12-30" aria-pressed="false">12 – 30</button>
-              <button type="button" class="seg__btn" data-v="30-999" aria-pressed="false">30 o más</button>
-            </div></fieldset>
+          <div class="selects">
+            <label class="sel"><span>Combustible</span><select data-filter="fuel"><option value="todos">Todos</option><option value="gasolina">Gasolina</option><option value="diesel">Diésel</option></select></label>
+            <label class="sel"><span>Potencia</span><select data-filter="kva"><option value="todas">Cualquiera</option><option value="0-5">Hasta 5 KVA</option><option value="5-12">5 – 12 KVA</option><option value="12-30">12 – 30 KVA</option><option value="30-999">30 KVA o más</option></select></label>
+          </div>
           <div class="filters__foot"><button class="btn btn--ghost btn--sm" id="filters-clear" type="button">Limpiar</button><button class="btn btn--yellow btn--sm" id="filters-apply" type="button">Ver resultados</button></div>
         </div>
 
         <p class="results" id="results" aria-live="polite"></p>
         <div class="grid" id="grid"></div>
+        <div class="more"><button class="btn btn--ghost btn--lg" id="more" type="button" hidden>Ver todo el catálogo</button></div>
       </div>
     </section>
 
@@ -192,10 +177,10 @@
           <h2 class="display" id="serv-title" data-split>No solo vendemos. Lo dejamos funcionando.</h2>
         </header>
         <div class="svc__grid">
-          <article class="svc" data-reveal><span class="svc__ico" data-icon="bolt" data-size="34"></span><h3>Instalación</h3><p>Conexión segura al tablero, transferencia automática y pruebas de carga antes de entregarte la obra.</p><small>01 / INSTALACIÓN</small></article>
-          <article class="svc" data-reveal><span class="svc__ico" data-icon="wrench" data-size="34"></span><h3>Servicio técnico</h3><p>Mantenimiento preventivo, reparación y repuestos. Técnicos que conocen tu equipo.</p><small>02 / SOPORTE</small></article>
-          <article class="svc" data-reveal><span class="svc__ico" data-icon="truck" data-size="34"></span><h3>Entregas y despachos</h3><p>Despachamos a Aragua, los llanos y más allá. Tu equipo llega probado y con garantía.</p><small>03 / DESPACHO</small></article>
-          <article class="svc" data-reveal><span class="svc__ico" data-icon="chat" data-size="34"></span><h3>Asesoría</h3><p>Te ayudamos a escoger la potencia correcta para que no pagues de más ni te quedes corto.</p><small>04 / ASESORÍA</small></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="bolt" data-size="34"></span><h3>Instalación</h3><p>Conexión segura al tablero, transferencia automática y pruebas de carga antes de entregarte la obra.</p></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="wrench" data-size="34"></span><h3>Servicio técnico</h3><p>Mantenimiento preventivo, reparación y repuestos. Técnicos que conocen tu equipo.</p></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="truck" data-size="34"></span><h3>Entregas y despachos</h3><p>Despachamos a Aragua, los llanos y más allá. Tu equipo llega probado y con garantía.</p></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="chat" data-size="34"></span><h3>Asesoría</h3><p>Te ayudamos a escoger la potencia correcta para que no pagues de más ni te quedes corto.</p></article>
         </div>
 
         <h3 class="display display--sm tl__title" data-reveal>Cómo trabajamos</h3>

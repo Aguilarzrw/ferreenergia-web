@@ -5,6 +5,9 @@ import { waLink, precio, kvaTxt, SEDES, WA } from './config.js';
 const $ = (s, r = document) => r.querySelector(s);
 const FUEL = { diesel: 'Diésel', gasolina: 'Gasolina' };
 const f = { cat: 'todas', fuel: 'todos', kva: 'todas', q: '' };
+const LIMIT = 6;
+let showAll = false;
+const pTxt = (p) => (p.precio == null ? 'Consultar' : precio(p.precio));
 let compare = [];
 
 const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -45,7 +48,7 @@ function card(p) {
       <h3 class="card__name"><button type="button" data-open="${p.id}" aria-haspopup="dialog">${nombreLimpio(p)}</button></h3>
       <div class="badges">${p.badges.map((b) => `<span class="badge ${b === 'ATS' ? 'badge--ats' : ''}">${b}</span>`).join('')}</div>
       <div class="card__foot">
-        <div class="price">${precio(p.precio)}<small>USD${p.ejemplo ? ' · referencial' : ''}</small></div>
+        <div class="price ${p.precio == null ? 'price--ask' : ''}">${pTxt(p)}<small>${p.precio == null ? 'Precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · referencial' : '')}</small></div>
         ${canCmp ? `<label class="cmp"><input type="checkbox" data-cmp="${p.id}" ${checked ? 'checked' : ''} /> Comparar</label>` : ''}
       </div>
     </div></article>`;
@@ -53,7 +56,11 @@ function card(p) {
 
 function render() {
   const list = filtrar();
-  $('#grid').innerHTML = list.length ? list.map(card).join('') : '<p class="empty">No encontramos equipos con esos filtros. Escríbenos y lo conseguimos.</p>';
+  const active = f.cat !== 'todas' || f.fuel !== 'todos' || f.kva !== 'todas' || f.q;
+  const shown = active || showAll ? list : list.slice(0, LIMIT);
+  $('#more').hidden = active || showAll || list.length <= LIMIT;
+  $('#more').textContent = `Ver todo el catálogo (${list.length})`;
+  $('#grid').innerHTML = list.length ? shown.map(card).join('') : '<p class="empty">No encontramos equipos con esos filtros. Escríbenos y lo conseguimos.</p>';
   $('#results').textContent = `${list.length} ${list.length === 1 ? 'equipo' : 'equipos'}`;
   const n = (f.cat !== 'todas') + (f.fuel !== 'todos') + (f.kva !== 'todas');
   const badge = $('#filters-count'); badge.hidden = !n; badge.textContent = n;
@@ -70,7 +77,7 @@ function updateTray() {
 }
 
 function msgProducto(p) {
-  return `Hola Ferreenergía, me interesa la ${nombreLimpio(p)} (${precio(p.precio)}). ¿Está disponible?`;
+  return `Hola Ferreenergía, me interesa la ${nombreLimpio(p)}${p.precio == null ? '' : ' (' + precio(p.precio) + ')'}. ¿Está disponible y a qué precio?`;
 }
 
 function openProduct(id, trigger) {
@@ -93,7 +100,7 @@ function openProduct(id, trigger) {
         <div class="badges">${p.kva ? `<span class="badge badge--ats">${kvaTxt(p.kva)} KVA</span>` : ''}${p.combustible ? `<span class="badge">${FUEL[p.combustible]}</span>` : ''}${p.badges.map((b) => `<span class="badge">${b}</span>`).join('')}</div>
         <h3 id="pd-title">${nombreLimpio(p)}</h3>
         <p>${p.descripcion}</p>
-        <div class="pd__price">${precio(p.precio)}<small>USD${p.ejemplo ? ' · precio referencial' : ''}</small></div>
+        <div class="pd__price">${pTxt(p)}<small>${p.precio == null ? 'precio por WhatsApp' : 'USD' + (p.ejemplo ? ' · precio referencial' : '')}</small></div>
         <table class="spec"><caption class="sr">Especificaciones técnicas</caption><tbody>${Object.entries(p.specs).map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join('')}</tbody></table>
         <div class="avail"><strong>Disponible en:</strong>${p.disponible.map((s) => `<span>${icon('pin', 16)}${s}</span>`).join('')}</div>
         <a class="btn btn--yellow btn--lg btn--block" target="_blank" rel="noopener" href="${waLink(msgProducto(p), WA.principal)}">${icon('wa', 22)} Lo quiero: WhatsApp</a>
@@ -109,12 +116,12 @@ function openProduct(id, trigger) {
 function openCompare() {
   const dlg = $('#compare-dialog');
   const items = compare.map((id) => data.productos.find((p) => p.id === id));
-  const keys = ['Potencia continua', 'Voltaje', 'Combustible', 'Arranque', 'Cabina', 'Tablero', 'Autonomía aprox.'];
+  const keys = [...new Set(items.flatMap((p) => Object.keys(p.specs)))];
   dlg.innerHTML = `<button class="dlg__close" type="button" aria-label="Cerrar comparación">${icon('close', 22)}</button>
     <div class="cd"><h3 id="cd-title">Comparar plantas</h3><div class="cd__scroll"><table>
       <thead><tr><th scope="col"><span class="sr">Característica</span></th>${items.map((p) => `<th scope="col">${nombreLimpio(p)}</th>`).join('')}</tr></thead>
       <tbody>
-        <tr><th scope="row">Precio</th>${items.map((p) => `<td><b>${precio(p.precio)}</b>${p.ejemplo ? ' (ref.)' : ''}</td>`).join('')}</tr>
+        <tr><th scope="row">Precio</th>${items.map((p) => `<td><b>${pTxt(p)}</b>${p.ejemplo ? ' (ref.)' : ''}</td>`).join('')}</tr>
         <tr><th scope="row">KVA</th>${items.map((p) => `<td>${kvaTxt(p.kva)}</td>`).join('')}</tr>
         ${keys.map((k) => `<tr><th scope="row">${k}</th>${items.map((p) => `<td>${p.specs[k] || '—'}</td>`).join('')}</tr>`).join('')}
         <tr><th scope="row">Disponible</th>${items.map((p) => `<td>${p.disponible.join(', ')}</td>`).join('')}</tr>
@@ -126,6 +133,7 @@ function openCompare() {
 
 export function initCatalog() {
   render();
+  $('#more').onclick = () => { showAll = true; render(); };
   const grid = $('#grid');
   grid.addEventListener('click', (ev) => {
     const o = ev.target.closest('[data-open]'); if (o) openProduct(o.dataset.open, o);
@@ -142,6 +150,7 @@ export function initCatalog() {
   $('#cmp-clear').onclick = () => { compare = []; render(); };
 
   // filtros
+  document.querySelectorAll('select[data-filter]').forEach((sel) => sel.addEventListener('change', () => { f[sel.dataset.filter] = sel.value; render(); }));
   document.querySelectorAll('.seg').forEach((seg) => seg.addEventListener('click', (ev) => {
     const b = ev.target.closest('.seg__btn'); if (!b) return;
     f[seg.dataset.filter] = b.dataset.v;
@@ -152,6 +161,7 @@ export function initCatalog() {
   $('#filters-clear').onclick = () => {
     Object.assign(f, { cat: 'todas', fuel: 'todos', kva: 'todas' });
     document.querySelectorAll('.seg').forEach((seg) => seg.querySelectorAll('.seg__btn').forEach((x, i) => { x.classList.toggle('is-on', i === 0); x.setAttribute('aria-pressed', i === 0); }));
+    document.querySelectorAll('select[data-filter]').forEach((sel) => { sel.selectedIndex = 0; });
     render();
   };
 

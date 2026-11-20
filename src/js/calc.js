@@ -77,10 +77,10 @@ export function initCalc() {
     const { producto: p, cubre } = recomendar(kvaR);
     const lista = sel.map(({ eq, qty: q }) => `${q} x ${eq.nombre}`);
     els.rec.innerHTML = cubre
-      ? `Recomendada: <b>${p.nombre.replace(' (ejemplo)', '')}</b><br><span class="pr">${precio(p.precio)}</span> · ${kvaTxt(p.kva)} KVA · ${p.combustible === 'diesel' ? 'Diésel' : 'Gasolina'}`
+      ? `Recomendada: <b>${p.nombre.replace(' (ejemplo)', '')}</b><br><span class="pr">${p.precio == null ? 'Consultar precio' : precio(p.precio)}</span> · ${kvaTxt(p.kva)} KVA · ${p.combustible === 'diesel' ? 'Diésel' : 'Gasolina'}`
       : `Tu consumo supera nuestra planta individual más grande (<b>${kvaTxt(p.kva)} KVA</b>). <span class="detail">Te armamos una solución a medida.</span>`;
     const msg = `Hola Ferreenergía, calculé mi consumo en su web:\n• ${lista.join('\n• ')}\n\nPotencia estimada: ${fmt(run)} W\nKVA recomendados: ${kvaTxt(kvaR.toFixed(1))}\n` +
-      (cubre ? `Planta sugerida: ${p.nombre.replace(' (ejemplo)', '')} (${precio(p.precio)})\n` : 'Necesito una solución para esta potencia.\n') + '¿Me confirman disponibilidad y precio?';
+      (cubre ? `Planta sugerida: ${p.nombre.replace(' (ejemplo)', '')} ${p.precio == null ? '' : ' (' + precio(p.precio) + ')'}\n` : 'Necesito una solución para esta potencia.\n') + '¿Me confirman disponibilidad y precio?';
     els.wa.href = waLink(msg);
     els.wa.target = '_blank'; els.wa.rel = 'noopener';
     els.wa.removeAttribute('aria-disabled');

@@ -102,13 +102,18 @@ $$('[data-count]').forEach((el) => {
   });
 })();
 
-// ---- instalaciones (placeholders listos para fotos / videos verticales) ----
+// ---- instalaciones (fotos tomadas del Instagram del cliente) ----
 (() => {
-  const rail = $('#work-rail');
-  const items = ['Instalación residencial', 'Planta en comercio', 'Finca en los llanos', 'Entrega y despacho', 'Servicio técnico', 'Montacargas y equipos'];
-  rail.innerHTML = items.map((t, i) => `<figure class="work__item" style="margin:0"><span class="num">${String(i + 1).padStart(2, '0')}</span>
-    <div class="ph">${icon('bolt', 54)}<b>${t}</b><small>Aquí va la foto o video vertical (Instagram)</small></div>
-    <figcaption class="cap">${t}</figcaption></figure>`).join('');
+  const rail = $('#work-rail'); const base = import.meta.env.BASE_URL + 'img/trabajos/';
+  const items = [
+    ['despacho.webp', 'Despacho de equipos', 'Cargando una planta para entrega'],
+    ['camaguan.webp', 'Nueva sede Camaguán', 'Inauguración en el Guárico'],
+    ['showroom-1.webp', 'Generador dual 12.000 W', 'Con ATS incluido, en showroom'],
+    ['showroom-2.webp', 'Generador 3.500 W', 'Gasolina, 6,5 HP, 4 tiempos'],
+    ['showroom-3.webp', 'Generador 3.500 W', 'Arranque manual, 110/220 V'],
+  ];
+  rail.innerHTML = items.map(([f, t, d], i) => `<figure class="work__item"><span class="num">${String(i + 1).padStart(2, '0')}</span>
+    <img src="${base}${f}" alt="${t}: ${d}" loading="lazy" decoding="async" /><figcaption class="cap"><b>${t}</b>${d}</figcaption></figure>`).join('');
   if (reduced) return;
   $$('.work__item', rail).forEach((it, i) => gsap.from(it, { clipPath: 'inset(0 0 100% 0 round 16px)', y: 40, duration: 1, ease: 'power4.out', delay: i * 0.05, scrollTrigger: { trigger: rail, start: 'top 85%', once: true } }));
 })();
