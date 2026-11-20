@@ -25,6 +25,8 @@ function visual(p, i = 0) {
 
 function filtrar() {
   return data.productos.filter((p) => {
+    // Los registros de demostración no son inventario confirmado y no deben publicarse.
+    if (p.ejemplo) return false;
     if (f.cat !== 'todas' && p.categoria !== f.cat) return false;
     if (f.fuel !== 'todos' && p.combustible !== f.fuel) return false;
     if (f.kva !== 'todas') {
