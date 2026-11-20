@@ -227,10 +227,21 @@ export function initCatalog() {
 
   // sheet inferior en móvil
   const sheet = $('#filters'), open = $('#filters-open'), back = $('#filters-backdrop');
+  const isSheet = () => matchMedia('(max-width: 899px)').matches;
   const toggle = (on) => {
     sheet.classList.toggle('is-open', on); back.hidden = !on; open.setAttribute('aria-expanded', on);
+    // En móvil la hoja es un diálogo modal: lo declaramos y atrapamos el foco mientras está abierta.
+    if (isSheet()) { sheet.setAttribute('role', on ? 'dialog' : 'group'); on ? sheet.setAttribute('aria-modal', 'true') : sheet.removeAttribute('aria-modal'); on ? sheet.setAttribute('aria-label', 'Filtros del catálogo') : null; document.body.style.overflow = on ? 'hidden' : ''; }
     if (on) setTimeout(() => sheet.querySelector('.seg__btn.is-on').focus(), 80); else open.focus({ preventScroll: true });
   };
+  sheet.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !sheet.classList.contains('is-open') || !isSheet()) return;
+    const f = [...sheet.querySelectorAll('button:not([hidden])')].filter((b) => b.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   open.onclick = () => toggle(true);
   back.onclick = () => toggle(false);
   $('#filters-apply').onclick = () => toggle(false);

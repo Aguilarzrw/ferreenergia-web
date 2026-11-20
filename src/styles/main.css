@@ -740,3 +740,6 @@ input[type='search']::-webkit-search-cancel-button { display: none; }
 
 /* hero sin 3D: foto real del producto */
 .hero__fallback img { width: min(520px, 90vw); height: auto; border-radius: var(--r-lg); border: 1px solid var(--line-y); }
+
+/* móvil: la lista se despliega en línea dentro de la hoja (que ya hace scroll) */
+@media (max-width: 899px) { .dd__list { max-height: 220px; overflow-y: auto; } }
