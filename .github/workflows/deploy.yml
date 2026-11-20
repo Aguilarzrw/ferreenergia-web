@@ -1,7 +1,7 @@
 name: Deploy a GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [main, redesign/hybrid-visual-system]
   workflow_dispatch:
 permissions:
   contents: read
