@@ -184,7 +184,7 @@ function hero() {
   if (weak) { stat(); return; }
   let api = null;
   const heroST = ScrollTrigger.create({
-    trigger: $('.hero__pin'), start: 'top top', end: () => '+=' + Math.round(innerHeight * 2.2), pin: true, scrub: true, anticipatePin: 1,
+    trigger: $('.hero__pin'), start: 'top top', end: () => '+=' + Math.round(innerHeight * 1.25), pin: true, scrub: true, anticipatePin: 1,
     onUpdate: (s) => { api?.setProgress(s.progress); const o = 1 - Math.min(1, s.progress * 4); copy.style.opacity = o; copy.style.pointerEvents = o < 0.2 ? 'none' : ''; copy.style.visibility = o < 0.05 ? 'hidden' : ''; hint.style.opacity = o; },
   });
   const start = async () => {
