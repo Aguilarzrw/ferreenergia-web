@@ -48,7 +48,7 @@ body { font-size: var(--fs-md); line-height: 1.55; }
 .btn--lg { min-height: 48px; padding: 0 var(--s5); font-size: var(--fs-md); }
 .btn--sm { min-height: var(--ctl); padding: 0 var(--s3); font-size: var(--fs-sm); }
 .btn--yellow:hover, .btn--ghost:hover { transform: none; }
-.btn--yellow:hover { box-shadow: 0 6px 20px -8px rgba(255, 200, 0, .55); }
+.btn--yellow:hover { box-shadow: 0 6px 14px -6px rgba(0, 0, 0, .6); }
 
 /* --- hero --- */
 .hero__copy .display { font-size: var(--fs-h1); line-height: .95; }
