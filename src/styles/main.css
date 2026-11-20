@@ -781,5 +781,4 @@ input[type='search']::-webkit-search-cancel-button { display: none; }
 .filters-backdrop:not([hidden]) { animation: bd-in .2s ease-out; }
 
 /* mosaicos sin icono en caja: jerarquía por tipografía y filete superior */
-.tile, .svc { border-top: 2px solid var(--y); }
 .tile h3, .svc h2 { margin-top: var(--s1); }
