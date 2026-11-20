@@ -390,3 +390,282 @@ body[data-page="inicio"] .tiles .tile p { color: rgba(255,255,255,.62); }
   body[data-page="sedes"] .phead h1,
   body[data-page="calculadora"] .phead h1 { font-size: clamp(2.8rem, 13vw, 4.3rem); }
 }
+
+
+/* ==========================================================================
+   FERREENERGÍA — brand recovery + mobile-first correction
+   The hybrid direction belongs to the catalogue structure, never to the
+   brand palette. Keep the industrial / cinematic identity on every page.
+   ========================================================================== */
+:root {
+  --fe-paper: #0a0a0a;
+  --fe-white: #151719;
+  --fe-ink: #f3f3f0;
+  --fe-muted: #a8a8a2;
+  --fe-line: rgba(255,255,255,.12);
+}
+body[data-page="catalogo"],
+body[data-page="servicios"],
+body[data-page="sedes"],
+body[data-page="calculadora"] {
+  background: var(--k1, #0a0a0a);
+  color: var(--txt, #f3f3f0);
+}
+body[data-page="catalogo"] .phead,
+body[data-page="servicios"] .phead,
+body[data-page="sedes"] .phead,
+body[data-page="calculadora"] .phead {
+  background:
+    radial-gradient(ellipse at 82% 24%, rgba(255,200,0,.10), transparent 38%),
+    linear-gradient(115deg, #050505 0%, #111416 62%, #090909 100%);
+  border-bottom: 1px solid rgba(255,200,0,.22);
+}
+body[data-page="catalogo"] .phead::before,
+body[data-page="servicios"] .phead::before,
+body[data-page="sedes"] .phead::before,
+body[data-page="calculadora"] .phead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background: repeating-linear-gradient(135deg, transparent 0 38px, rgba(255,255,255,.045) 39px 40px);
+  mask-image: linear-gradient(90deg, #000, transparent 82%);
+}
+body[data-page="catalogo"] .phead h1,
+body[data-page="servicios"] .phead h1,
+body[data-page="sedes"] .phead h1,
+body[data-page="calculadora"] .phead h1 {
+  font-family: var(--f-display);
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: -.015em;
+}
+body[data-page="catalogo"] .phead h1 em,
+body[data-page="servicios"] .phead h1 em,
+body[data-page="sedes"] .phead h1 em,
+body[data-page="calculadora"] .phead h1 em { color: var(--y); }
+body[data-page="catalogo"] .sec--tight { background: #0a0a0a; }
+body[data-page="catalogo"] .search {
+  background: #151719;
+  border: 1px solid rgba(255,255,255,.16);
+  color: #a8a8a2;
+}
+body[data-page="catalogo"] .search input { color: #f3f3f0; }
+body[data-page="catalogo"] .filters {
+  border-color: rgba(255,255,255,.14);
+  color: #f3f3f0;
+}
+body[data-page="catalogo"] legend,
+body[data-page="catalogo"] .results { color: #a8a8a2; }
+body[data-page="catalogo"] .seg__btn,
+body[data-page="catalogo"] .dd__btn {
+  color: #e5e5df;
+  background: #151719;
+  border-color: rgba(255,255,255,.16);
+}
+body[data-page="catalogo"] .seg__btn.is-on {
+  color: #080808;
+  background: var(--y);
+  border-color: var(--y);
+}
+body[data-page="catalogo"] .grid,
+#featured {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+body[data-page="catalogo"] .card,
+#featured .card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  color: #f3f3f0;
+  background: linear-gradient(155deg,#1b1e20 0%,#111314 72%);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 3px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.22);
+}
+body[data-page="catalogo"] .card__img,
+#featured .card__img {
+  flex: none;
+  aspect-ratio: 1.35 / 1;
+  min-height: 0;
+  background: #202326;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+body[data-page="catalogo"] .card__img img,
+#featured .card__img img {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  object-fit: contain;
+  mix-blend-mode: normal;
+}
+body[data-page="catalogo"] .card__body,
+#featured .card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 13px;
+  padding: 20px;
+}
+body[data-page="catalogo"] .card__name,
+#featured .card__name { color: #f3f3f0; }
+body[data-page="catalogo"] .card__foot,
+#featured .card__foot {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,.13);
+}
+body[data-page="catalogo"] .price,
+#featured .price { color: var(--y); }
+body[data-page="catalogo"] .price small,
+#featured .price small { color: #a8a8a2; }
+body[data-page="catalogo"] .badge,
+#featured .badge {
+  color: #c7c7c0;
+  border-color: rgba(255,255,255,.2);
+}
+body[data-page="catalogo"] .card__fuel,
+#featured .card__fuel {
+  color: #f3f3f0;
+  background: rgba(5,5,5,.82);
+  border-color: rgba(255,255,255,.18);
+}
+body[data-page="catalogo"] .empty {
+  color: #c8c8c1;
+  background: #151719;
+  border-color: rgba(255,255,255,.14);
+}
+body[data-page="catalogo"] .strip {
+  background: #171b1d;
+  border-top: 1px solid rgba(255,200,0,.22);
+}
+body[data-page="servicios"] .svc,
+body[data-page="sedes"] .sede {
+  color: #f3f3f0;
+  background: linear-gradient(145deg,#1a1d1f,#111314);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 3px;
+  box-shadow: none;
+}
+body[data-page="servicios"] .svc h2,
+body[data-page="servicios"] .svc h3,
+body[data-page="sedes"] .sede h3 { color: #f3f3f0; }
+body[data-page="servicios"] .svc p,
+body[data-page="sedes"] .sede p,
+body[data-page="sedes"] .sede dd { color: #a8a8a2; }
+body[data-page="sedes"] .map svg { background: #151719; }
+body[data-page="sedes"] .map svg text { fill: #f3f3f0; }
+body[data-page="sedes"] .map figcaption { color: #a8a8a2; }
+body[data-page="servicios"] .sec--alt,
+body[data-page="sedes"] .faq {
+  background: #111416;
+  color: #f3f3f0;
+}
+body[data-page="sedes"] .acc__item {
+  background: #1b1e20;
+  border-color: rgba(255,255,255,.12);
+}
+body[data-page="sedes"] .acc__a p { color: #b8b8b1; }
+body[data-page="catalogo"] .filters-backdrop { background: rgba(0,0,0,.76); }
+body[data-page="catalogo"] .filters__foot {
+  background: linear-gradient(180deg,transparent,#111416 22%);
+}
+body[data-page="catalogo"] .cmp { color: #c7c7c0; }
+body[data-page="catalogo"] .cmp__box { border-color: rgba(255,255,255,.35); }
+body[data-page="catalogo"] .cmp input { accent-color: var(--y); }
+
+@media (min-width: 1000px) {
+  body[data-page="catalogo"] .grid,
+  #featured { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (min-width: 1440px) {
+  body[data-page="catalogo"] .grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+@media (max-width: 999px) {
+  body[data-page="catalogo"] .grid,
+  #featured { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+}
+@media (max-width: 639px) {
+  body[data-page="catalogo"] .phead,
+  body[data-page="servicios"] .phead,
+  body[data-page="sedes"] .phead,
+  body[data-page="calculadora"] .phead {
+    padding: 108px 0 48px;
+  }
+  .catalog-page .phead h1,
+  body[data-page="servicios"] .phead h1,
+  body[data-page="sedes"] .phead h1,
+  body[data-page="calculadora"] .phead h1 {
+    max-width: 12ch;
+    font-size: clamp(2.45rem,11.5vw,3.65rem);
+    line-height: .96;
+    overflow-wrap: normal;
+  }
+  body[data-page="catalogo"] .phead .lead,
+  body[data-page="servicios"] .phead .lead,
+  body[data-page="sedes"] .phead .lead,
+  body[data-page="calculadora"] .phead .lead {
+    margin-top: 20px;
+    font-size: .96rem;
+    line-height: 1.6;
+  }
+  body[data-page="catalogo"] .sec--tight {
+    padding-top: 24px;
+    padding-bottom: 64px;
+  }
+  body[data-page="catalogo"] .toolbar { gap: 10px; }
+  body[data-page="catalogo"] .search { min-width: 0; min-height: 50px; }
+  body[data-page="catalogo"] .filters-open { min-height: 46px; }
+  body[data-page="catalogo"] .grid,
+  #featured { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  body[data-page="catalogo"] .card,
+  #featured .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  body[data-page="catalogo"] .card__img,
+  #featured .card__img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1.45 / 1;
+  }
+  body[data-page="catalogo"] .card__body,
+  #featured .card__body { padding: 17px; gap: 11px; }
+  body[data-page="catalogo"] .card__name,
+  #featured .card__name { font-size: 1.08rem; line-height: 1.25; }
+  body[data-page="catalogo"] .card__foot,
+  #featured .card__foot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  body[data-page="catalogo"] .card__fuel,
+  #featured .card__fuel { display: inline-flex; }
+  body[data-page="catalogo"] .strip__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  body[data-page="catalogo"] .strip .btn { width: 100%; }
+}
+@media (max-width: 380px) {
+  .catalog-page .phead h1,
+  body[data-page="servicios"] .phead h1,
+  body[data-page="sedes"] .phead h1,
+  body[data-page="calculadora"] .phead h1 {
+    font-size: clamp(2.25rem,10.8vw,2.8rem);
+  }
+  body[data-page="catalogo"] .card__foot,
+  #featured .card__foot { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="catalogo"] .card,
+  #featured .card { transition: none; }
+}
