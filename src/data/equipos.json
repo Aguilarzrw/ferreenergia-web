@@ -1,0 +1,21 @@
+{
+  "_nota": "Vatios típicos de referencia. 'arranque' = multiplicador de pico al encender (motores/compresores). Referencial.",
+  "factorPotencia": 0.8,
+  "margen": 0.25,
+  "equipos": [
+    { "id": "nevera", "nombre": "Nevera", "w": 250, "arranque": 3, "icono": "fridge" },
+    { "id": "congelador", "nombre": "Congelador", "w": 300, "arranque": 3, "icono": "freezer" },
+    { "id": "aa12", "nombre": "Aire 12.000 BTU", "w": 1200, "arranque": 3, "icono": "ac" },
+    { "id": "aa18", "nombre": "Aire 18.000 BTU", "w": 1800, "arranque": 3, "icono": "ac" },
+    { "id": "aa24", "nombre": "Aire 24.000 BTU", "w": 2400, "arranque": 3, "icono": "ac" },
+    { "id": "bomba", "nombre": "Bomba de agua 1 HP", "w": 750, "arranque": 3, "icono": "pump" },
+    { "id": "tv", "nombre": "Televisor", "w": 120, "arranque": 1, "icono": "tv" },
+    { "id": "luces", "nombre": "Luces (10 LED)", "w": 100, "arranque": 1, "icono": "bulb" },
+    { "id": "pc", "nombre": "Computadora", "w": 250, "arranque": 1, "icono": "pc" },
+    { "id": "router", "nombre": "Router / Internet", "w": 20, "arranque": 1, "icono": "router" },
+    { "id": "lavadora", "nombre": "Lavadora", "w": 500, "arranque": 2.5, "icono": "washer" },
+    { "id": "microondas", "nombre": "Microondas", "w": 1200, "arranque": 1, "icono": "micro" },
+    { "id": "ventilador", "nombre": "Ventilador", "w": 80, "arranque": 1.5, "icono": "fan" },
+    { "id": "motor", "nombre": "Motor de finca (3 HP)", "w": 2200, "arranque": 3.5, "icono": "motor" }
+  ]
+}

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es-VE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Ferreenergía VE | Plantas eléctricas y maquinaria agrícola en Aragua y Guárico</title>
+  <meta name="description" content="Plantas eléctricas Europower, maquinaria agrícola, instalación y servicio técnico. Sedes en San Jacinto (Aragua) y Camaguán (Guárico). Calcula tu planta y pídela por WhatsApp." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_VE" />
+  <meta property="og:title" content="Ferreenergía VE | Que el apagón no te pare" />
+  <meta property="og:description" content="Plantas eléctricas Europower, maquinaria agrícola, instalación y servicio técnico en Aragua y Guárico." />
+  <meta property="og:image" content="https://aguilarzrw.github.io/ferreenergia-web/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%img/logo.svg" />
+  <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__bar">
+      <a class="nav__brand" href="#inicio" aria-label="Ferreenergía VE, inicio">
+        <img src="%BASE_URL%img/logo.svg" width="44" height="44" alt="" />
+        <span>FERRE<b>ENERGÍA</b></span>
+      </a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#calculadora">Calculadora</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#sedes">Sedes</a>
+        <a href="#faq">Preguntas</a>
+      </nav>
+      <a class="btn btn--sm btn--yellow nav__cta" data-wa="Hola Ferreenergía, quiero información sobre plantas eléctricas." href="#">
+        <span data-icon="wa"></span> WhatsApp
+      </a>
+      <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menú móvil">
+      <a href="#calculadora"><i>01</i>Calculadora</a>
+      <a href="#catalogo"><i>02</i>Catálogo</a>
+      <a href="#servicios"><i>03</i>Servicios</a>
+      <a href="#instalaciones"><i>04</i>Instalaciones</a>
+      <a href="#sedes"><i>05</i>Sedes</a>
+      <a href="#faq"><i>06</i>Preguntas</a>
+    </nav>
+    <a class="btn btn--yellow btn--lg" data-wa="Hola Ferreenergía, quiero información sobre plantas eléctricas." href="#"><span data-icon="wa"></span> Escríbenos por WhatsApp</a>
+  </div>
+
+  <main id="contenido">
+    <!-- 4.1 HERO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero__pin">
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__stage" id="stage">
+          <div class="loader" id="loader" aria-hidden="true"><span class="loader__bolt"></span><small>Encendiendo planta…</small></div>
+          <div class="hero__fallback" id="hero-fallback" aria-hidden="true"></div>
+          <canvas id="hero-canvas" aria-label="Modelo 3D de una planta eléctrica Europower que se despieza al hacer scroll" role="img"></canvas>
+          <div class="hero__labels" id="labels" aria-hidden="true">
+            <div class="tag" data-part="canopy"><b>Cabina insonorizada</b><small>−65 dB aprox.</small></div>
+            <div class="tag" data-part="tablero"><b>Tablero + ATS</b><small>Arranque automático</small></div>
+            <div class="tag" data-part="engine"><b>Motor diésel</b><small>Refrigerado, 1.800 rpm</small></div>
+            <div class="tag" data-part="alternator"><b>Alternador</b><small>110/220 V · bobinado cobre</small></div>
+            <div class="tag" data-part="tank"><b>Tanque</b><small>Autonomía ~10 h</small></div>
+          </div>
+        </div>
+        <div class="hero__copy" id="hero-copy">
+          <p class="eyebrow"><span data-icon="bolt" data-size="16"></span> Europower · Aragua y Guárico</p>
+          <h1 id="hero-title" class="display">Que el apagón<br /><em>no te pare</em></h1>
+          <p class="lead">Plantas eléctricas, maquinaria agrícola, instalación y servicio técnico. Te asesoramos, te despachamos y te dejamos la luz funcionando.</p>
+          <div class="hero__cta">
+            <a class="btn btn--yellow btn--lg" href="#catalogo">Ver plantas eléctricas <span data-icon="arrow" data-size="20"></span></a>
+            <a class="btn btn--ghost btn--lg" href="#calculadora">Calcula tu planta</a>
+          </div>
+          <ul class="chips" aria-label="Datos rápidos">
+            <li><span>KVA</span>2,5 – 40</li>
+            <li><span>COMB.</span>Gasolina / Diésel</li>
+            <li><span>SERV.</span>Instalación y soporte</li>
+          </ul>
+        </div>
+        <p class="hero__hint" id="hero-hint" aria-hidden="true">Desliza <span></span></p>
+      </div>
+    </section>
+
+    <!-- 4.2 CONFIANZA -->
+    <section class="trust" aria-label="Por qué Ferreenergía">
+      <div class="wrap trust__grid">
+        <!-- TODO confirmar con cliente: valores de ejemplo -->
+        <div class="stat" data-reveal><strong data-count="8" data-prefix="+">0</strong><span>años en el mercado</span></div>
+        <div class="stat" data-reveal><strong data-count="350" data-prefix="+">0</strong><span>equipos instalados</span></div>
+        <div class="stat" data-reveal><strong data-count="2">0</strong><span>sedes: Aragua y Guárico</span></div>
+        <div class="stat" data-reveal><strong data-count="12" data-suffix=" m">0</strong><span>garantía en plantas</span></div>
+        <div class="brand" data-reveal>
+          <small>Distribuidores de</small>
+          <span class="brand__word" aria-label="Europower">EUROPOWER</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.3 CALCULADORA -->
+    <section class="sec calc" id="calculadora" aria-labelledby="calc-title">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow" data-reveal>Calculadora de potencia</p>
+          <h2 class="display" id="calc-title" data-split>¿Qué planta necesitas?</h2>
+          <p class="lead" data-reveal>Toca los equipos que quieres mantener encendidos. Te decimos los KVA y la planta exacta de nuestro catálogo.</p>
+        </header>
+        <div class="calc__layout">
+          <div class="calc__cards" id="calc-cards" role="group" aria-label="Equipos"></div>
+          <aside class="meter" id="meter" aria-labelledby="meter-title">
+            <h3 id="meter-title" class="meter__title">Tu consumo</h3>
+            <div class="meter__bar" role="progressbar" aria-label="Potencia estimada" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0" id="meter-bar">
+              <div class="meter__fill" id="meter-fill"></div>
+              <span class="meter__spark" id="meter-spark" data-icon="bolt" data-size="26"></span>
+              <div class="meter__ticks" aria-hidden="true"></div>
+            </div>
+            <div class="meter__nums">
+              <div><span>Potencia</span><strong id="out-w">0</strong><small>W</small></div>
+              <div><span>Recomendado</span><strong id="out-kva">0</strong><small>KVA</small></div>
+            </div>
+            <div class="meter__rec" id="out-rec" aria-live="polite">Selecciona al menos un equipo.</div>
+            <a class="btn btn--yellow btn--lg btn--block" id="out-wa" href="#" aria-disabled="true">
+              <span data-icon="wa"></span> Pedir esta planta por WhatsApp
+            </a>
+            <button class="link-btn" id="calc-reset" type="button">Limpiar selección</button>
+            <p class="meter__note">Cálculo referencial. Nuestro equipo técnico te confirma la planta ideal.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.4 CATÁLOGO -->
+    <section class="sec catalog" id="catalogo" aria-labelledby="cat-title">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow" data-reveal>Catálogo</p>
+          <h2 class="display" id="cat-title" data-split>Equipos listos para entregar</h2>
+          <p class="lead" data-reveal>Precios en dólares. Disponibilidad por sede, confírmala por WhatsApp.</p>
+        </header>
+
+        <div class="toolbar" data-reveal>
+          <label class="search"><span class="sr">Buscar equipo</span><span data-icon="search" data-size="20"></span>
+            <input id="q" type="search" placeholder="Buscar: 15 KVA, diésel, motobomba…" autocomplete="off" /></label>
+          <button class="btn btn--ghost btn--sm filters-open" id="filters-open" type="button" aria-expanded="false" aria-controls="filters"><span data-icon="filter" data-size="18"></span> Filtros <b id="filters-count" hidden>0</b></button>
+        </div>
+
+        <div class="filters-backdrop" id="filters-backdrop" hidden></div>
+        <div class="filters" id="filters" role="group" aria-label="Filtros del catálogo">
+          <div class="filters__handle" aria-hidden="true"></div>
+          <fieldset><legend>Categoría</legend>
+            <div class="seg" data-filter="cat">
+              <button type="button" class="seg__btn is-on" data-v="todas" aria-pressed="true">Todas</button>
+              <button type="button" class="seg__btn" data-v="plantas" aria-pressed="false">Plantas eléctricas</button>
+              <button type="button" class="seg__btn" data-v="agro" aria-pressed="false">Maquinaria agrícola</button>
+              <button type="button" class="seg__btn" data-v="otros" aria-pressed="false">Otros equipos</button>
+            </div></fieldset>
+          <fieldset><legend>Combustible</legend>
+            <div class="seg" data-filter="fuel">
+              <button type="button" class="seg__btn is-on" data-v="todos" aria-pressed="true">Todos</button>
+              <button type="button" class="seg__btn" data-v="gasolina" aria-pressed="false">Gasolina</button>
+              <button type="button" class="seg__btn" data-v="diesel" aria-pressed="false">Diésel</button>
+            </div></fieldset>
+          <fieldset><legend>Potencia (KVA)</legend>
+            <div class="seg" data-filter="kva">
+              <button type="button" class="seg__btn is-on" data-v="todas" aria-pressed="true">Cualquiera</button>
+              <button type="button" class="seg__btn" data-v="0-5" aria-pressed="false">Hasta 5</button>
+              <button type="button" class="seg__btn" data-v="5-12" aria-pressed="false">5 – 12</button>
+              <button type="button" class="seg__btn" data-v="12-30" aria-pressed="false">12 – 30</button>
+              <button type="button" class="seg__btn" data-v="30-999" aria-pressed="false">30 o más</button>
+            </div></fieldset>
+          <div class="filters__foot"><button class="btn btn--ghost btn--sm" id="filters-clear" type="button">Limpiar</button><button class="btn btn--yellow btn--sm" id="filters-apply" type="button">Ver resultados</button></div>
+        </div>
+
+        <p class="results" id="results" aria-live="polite"></p>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <!-- 4.5 SERVICIOS -->
+    <section class="sec services" id="servicios" aria-labelledby="serv-title">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow" data-reveal>Servicios</p>
+          <h2 class="display" id="serv-title" data-split>No solo vendemos. Lo dejamos funcionando.</h2>
+        </header>
+        <div class="svc__grid">
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="bolt" data-size="34"></span><h3>Instalación</h3><p>Conexión segura al tablero, transferencia automática y pruebas de carga antes de entregarte la obra.</p><small>01 / INSTALACIÓN</small></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="wrench" data-size="34"></span><h3>Servicio técnico</h3><p>Mantenimiento preventivo, reparación y repuestos. Técnicos que conocen tu equipo.</p><small>02 / SOPORTE</small></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="truck" data-size="34"></span><h3>Entregas y despachos</h3><p>Despachamos a Aragua, los llanos y más allá. Tu equipo llega probado y con garantía.</p><small>03 / DESPACHO</small></article>
+          <article class="svc" data-reveal><span class="svc__ico" data-icon="chat" data-size="34"></span><h3>Asesoría</h3><p>Te ayudamos a escoger la potencia correcta para que no pagues de más ni te quedes corto.</p><small>04 / ASESORÍA</small></article>
+        </div>
+
+        <h3 class="display display--sm tl__title" data-reveal>Cómo trabajamos</h3>
+        <ol class="tl" id="timeline">
+          <li><i>01</i><b>Eliges</b><span>Del catálogo o con la calculadora.</span></li>
+          <li><i>02</i><b>Te asesoramos</b><span>Confirmamos potencia y combustible.</span></li>
+          <li><i>03</i><b>Despachamos</b><span>Entrega a tu local, finca o casa.</span></li>
+          <li><i>04</i><b>Instalamos</b><span>Conexión, ATS y pruebas.</span></li>
+          <li><i>05</i><b>Soporte</b><span>Mantenimiento y repuestos.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4.6 INSTALACIONES -->
+    <section class="sec work" id="instalaciones" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="sec__head sec__head--row">
+          <div>
+            <p class="eyebrow" data-reveal>Instalaciones reales</p>
+            <h2 class="display" id="work-title" data-split>Trabajos que hablan solos</h2>
+          </div>
+          <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/ferrenergia2020/" target="_blank" rel="noopener"><span data-icon="ig" data-size="18"></span> Ver más en Instagram</a>
+        </header>
+      </div>
+      <div class="work__rail" id="work-rail" tabindex="0" role="region" aria-label="Galería de instalaciones (desplázate horizontalmente)"></div>
+    </section>
+
+    <!-- 4.7 SEDES -->
+    <section class="sec sedes" id="sedes" aria-labelledby="sedes-title">
+      <div class="wrap sedes__layout">
+        <div>
+          <header class="sec__head">
+            <p class="eyebrow" data-reveal>Sedes</p>
+            <h2 class="display" id="sedes-title" data-split>Cerca de donde la necesitas</h2>
+          </header>
+          <div class="sede__list" id="sede-list"></div>
+        </div>
+        <figure class="map" data-reveal>
+          <svg id="map" viewBox="0 0 800 700" role="img" aria-label="Mapa estilizado de Venezuela con las sedes de San Jacinto (Aragua) y Camaguán (Guárico)"></svg>
+          <figcaption>Ilustración estilizada, no a escala.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4.8 FAQ -->
+    <section class="sec faq" id="faq" aria-labelledby="faq-title">
+      <div class="wrap wrap--narrow">
+        <header class="sec__head">
+          <p class="eyebrow" data-reveal>Preguntas frecuentes</p>
+          <h2 class="display" id="faq-title" data-split>Lo que más nos preguntan</h2>
+        </header>
+        <div class="acc" id="acc"></div>
+      </div>
+    </section>
+
+    <!-- 4.9 CTA FINAL -->
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="cta__bg" aria-hidden="true"></div>
+      <div class="wrap cta__inner">
+        <h2 class="display" id="cta-title" data-split>¿Listo para no quedarte a oscuras?</h2>
+        <p class="lead" data-reveal>Escríbenos y en minutos te decimos qué planta te conviene, el precio y cuándo la tienes.</p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--yellow btn--lg" data-wa="Hola Ferreenergía, quiero cotizar una planta eléctrica." href="#"><span data-icon="wa"></span> Cotizar por WhatsApp</a>
+          <a class="btn btn--ghost btn--lg" href="https://www.instagram.com/ferrenergia2020/" target="_blank" rel="noopener"><span data-icon="ig"></span> @ferrenergia2020</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <div class="foot__brand">
+        <img src="%BASE_URL%img/logo.svg" width="72" height="72" alt="Inversiones Ferre Energía" loading="lazy" />
+        <p>Plantas eléctricas, maquinaria agrícola y servicio técnico en Aragua y Guárico.</p>
+      </div>
+      <div><h4>Contacto</h4>
+        <a data-wa="Hola Ferreenergía, quiero información." data-num="principal" href="#">0424-354-6663</a>
+        <a data-wa="Hola Ferreenergía, quiero información." data-num="secundario" href="#">0424-306-9546</a>
+        <a href="https://www.instagram.com/ferrenergia2020/" target="_blank" rel="noopener">@ferrenergia2020</a></div>
+      <div><h4>Sedes</h4><p>San Jacinto, Aragua<br />Camaguán, Guárico <em class="new">Nueva</em></p></div>
+      <div><h4>Explora</h4><a href="#calculadora">Calculadora</a><a href="#catalogo">Catálogo</a><a href="#servicios">Servicios</a><a href="#faq">Preguntas</a></div>
+    </div>
+    <div class="wrap foot__legal">
+      <small>© <span id="year"></span> Inversiones Ferre Energía. Propuesta de diseño.</small>
+      <small>Diseño y desarrollo: <a href="https://aguilarzrw.github.io/portafolio-web/" target="_blank" rel="noopener">aguidev</a></small>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="wa-float" data-wa="Hola Ferreenergía, quiero información sobre plantas eléctricas." href="#" aria-label="Escribir por WhatsApp"><span data-icon="wa" data-size="30"></span></a>
+
+  <!-- Barra comparar -->
+  <div class="cmp-tray" id="cmp-tray" hidden>
+    <span id="cmp-count">0 de 3</span>
+    <button class="btn btn--yellow btn--sm" id="cmp-open" type="button">Comparar</button>
+    <button class="link-btn" id="cmp-clear" type="button">Quitar</button>
+  </div>
+
+  <dialog class="dlg" id="product-dialog" aria-labelledby="pd-title"></dialog>
+  <dialog class="dlg dlg--wide" id="compare-dialog" aria-labelledby="cd-title"></dialog>
+</body>
+</html>
